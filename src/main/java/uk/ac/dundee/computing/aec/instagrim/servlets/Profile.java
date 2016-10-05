@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
-import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
+import uk.ac.dundee.computing.aec.instagrim.stores.*;
 
 /**
  *
@@ -26,6 +26,11 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
  */
 @WebServlet(name = "Profile", urlPatterns = {"/Profile"})
 public class Profile extends HttpServlet {
+    Cluster cluster=null;
+    public void init(ServletConfig config) throws ServletException {
+        // TODO Auto-generated method stub
+        cluster = CassandraHosts.getCluster();
+    }
     
 
     /**
@@ -52,6 +57,13 @@ public class Profile extends HttpServlet {
             throws ServletException, IOException {
         
         //gets profile info from user.java
+        HttpSession session=request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+        ProfileTemplate profile = new ProfileTemplate();
+        User us = new User();
+        us.setCluster(cluster);
+        profile = us.getProfileInfo(lg.getUsername(), profile);
+        session.setAttribute("Profile", profile);
         RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
         rd.forward(request, response);
     }

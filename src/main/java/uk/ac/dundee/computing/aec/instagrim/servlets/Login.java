@@ -62,6 +62,7 @@ public class Login extends HttpServlet {
         HttpSession session=request.getSession();
         System.out.println("Session in servlet "+session);
         if (isValid){
+            //us.getProfileInfo(username);
             LoggedIn lg= new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
@@ -69,6 +70,13 @@ public class Login extends HttpServlet {
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
+            
+            
+            
+            
+            
+            
+            
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
 	    rd.forward(request,response);
             

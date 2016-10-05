@@ -51,12 +51,18 @@
         </nav>
                     
         <% LoggedIn log = (LoggedIn) session.getAttribute("LoggedIn");
+            ProfileTemplate profile = (ProfileTemplate) session.getAttribute("Profile");
         
         
                         if (log != null) {
                             String UserName = log.getUsername(); %>
                             <h2 align="center">You are logged in as:  <%=UserName%></h2>
-                            <h3 align="center"> Hello <%=UserName%></h2>
+                            <h3 align="center"> Hello <%=UserName%></h3>
+                            <h3 align="center"> First Name: <%=profile.getFirstName()%></h3>
+                            <h3 align="center"> Last Name: <%=profile.getLastName()%></h3>
+                            <h3 align="center"> Email: <%=profile.getEmail()%></h3>
+                            
+                            
                             
                             
                         <%} %>        

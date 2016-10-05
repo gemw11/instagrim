@@ -17,4 +17,39 @@ public class ProfileTemplate
     private String email = null;
     //private String city = null;
     //private String phoneNumber = null;
+
+
+public void setFirstName(String firstname)
+{
+    this.firstname = firstname;
+
+}
+
+public String getFirstName()
+{
+    return firstname;
+}
+
+public void setLastName(String lastname)
+{
+    this.lastname = lastname;
+
+}
+
+public String getLastName()
+{
+    return lastname;
+}
+
+public void setEmail(String email)
+{
+    this.email = email;
+
+}
+
+public String getEmail()
+{
+    return email;
+}
+
 }
