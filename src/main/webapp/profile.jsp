@@ -1,28 +1,29 @@
 <%-- 
-    Document   : upload
-    Created on : Sep 22, 2014, 6:31:50 PM
-    Author     : Administrator
+    Document   : profile
+    Created on : Sep 28, 2016, 9:38:09 PM
+    Author     : gemmawhyte
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Instagrim</title>
-        <link rel="stylesheet" type="text/css" href="Styles.css" />
+        <title>Profile</title>
+        <link rel="stylesheet" type="text/css" href="Styles.css" />  
     </head>
     <body>
         <h1 align="center"> Instagrim! </h1>
         <i><h2 align="center"> See the world differently</h2> </i>
-        
-                <nav>
+        <nav>
             <ul id="menu">
-               <li><a href="/Instagrim">Home</a></li>
+
+                <li><a href="/Instagrim">Home</a></li>
                 <li><a href="/Instagrim/Profile">Profile</a></li>   <%-- only if logged in? --%>
                 <li><a href="/Instagrim">Search</a></li>
-                <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+                <li><a href="upload.jsp">Upload</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -30,8 +31,7 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-                  
-                <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
+
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li><a href="/Instagrim/Logout">Logout</a></li>
                     <%}
@@ -49,23 +49,16 @@
                 
             </ul>
         </nav>
-                
-         
- 
-        <article>
-            <h3>File Upload</h3>
-            <form method="POST" enctype="multipart/form-data" action="Image">
-                <h4 id="uploadfile">File to upload: <input type="file" name="upfile"></h4><br/>
-
-                <br/>
-                <input type="submit" value="Press"> to upload the file!
-            </form>
-
-        </article>
-        <footer>
-            <ul>
-               <%-- <li class="footer"><a href="/Instagrim">Home</a></li>
-            --%></ul>
-        </footer>
+                    
+        <% LoggedIn log = (LoggedIn) session.getAttribute("LoggedIn");
+        
+        
+                        if (log != null) {
+                            String UserName = log.getUsername(); %>
+                            <h2 align="center">You are logged in as:  <%=UserName%></h2>
+                            <h3 align="center"> Hello <%=UserName%></h2>
+                            
+                            
+                        <%} %>        
     </body>
 </html>

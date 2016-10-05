@@ -8,9 +8,101 @@ and open the template in the editor.
     Author     : Administrator
 */
 
-
+/*
 nav {
     text-align: left;
     border: 2px;
     float: right;
+    
+
+} */
+
+h1
+{
+    
+    border-bottom: 2px solid black;
+    font-family: Verdana;
+    
 }
+h2{ 
+font-size: larger;
+}
+#menu {
+ 
+    list-style-type: none;
+    
+    padding: 5px;
+    overflow: hidden;
+    background-color: lightgrey;
+    position: static;
+    top: 10px;
+    width: 100%;
+    font-family: sans-serif;
+    text-decoration: none;
+    border-bottom: 1px solid black;
+    display: inline-block;
+}
+
+
+
+li {
+   float: left;
+   border-right: 1px solid grey;
+   display: inline;
+}
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 20px 30px;
+    text-decoration: none;
+
+}
+
+#loginpart {
+    
+    color: black;
+    font-family: Verdana, sans-serif;
+}
+#loginbutton {
+    
+    background-color: white;
+    font-family: sans-serif;
+    position: absolute;
+    width: 25%;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    color: black;
+    border: 2px solid blue;
+   
+    
+    
+}
+
+#loginbutton:hover {
+    background-color: royalblue;
+        color: white;
+}
+
+#registerheader {
+    font-family: Verdana; 
+    
+}
+
+#uploadfile {
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    

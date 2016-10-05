@@ -5,40 +5,76 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Instagrim</title>
-        <link rel="stylesheet" type="text/css" href="Styles.css" />
+         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
         <header>
-        <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
+        <h1 align="center"> Instagrim! </h1>
+        <i><h2 align="center"> See the world differently</h2> </i>
         </header>
+        
+        
         <nav>
-            <ul>
+            <ul id="menu">
+
+                <li><a href="/Instagrim">Home</a></li>
+                <li><a href="/Instagrim/Profile">Profile</a></li>   <%-- only if logged in? --%>
+                <li><a href="/Instagrim">Search</a></li>
+               <%-- <li><a href="/Instagrim/Images/majed">Sample Images</a></li> --%>
+                <li><a href="upload.jsp">Upload</a></li>
+                    <%
+                        
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        if (lg != null) {
+                            String UserName = lg.getUsername();
+                            if (lg.getlogedin()) {
+                    %>
+
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li><a href="/Instagrim/Logout">Logout</a></li>
+                    <%}
+                            }else{
+                                %>
                 
-                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                
+                 <li><a href="register.jsp">Register</a></li>
+                <li><a href="login.jsp">Login</a></li>
+                <%
+                                        
+                            
+                    }%>
+                
+                
             </ul>
         </nav>
+                
+          <%--      <li><a href="/Instagrim/Images/majed">Sample Images</a></li> --%>
+         
        
         <article>
-            <h3>Register as user</h3>
+            <h3 id="registerheader">Register as a new user..</h3>
             <form method="POST"  action="Register">
                 <ul>
-                    <li>User Name <input type="text" name="username"></li>
-                    <li>Password <input type="password" name="password"></li>
+                    <ul>First Name:-<input type="text" name="firstname"></ul>
+                    <ul>Last Name:-<input type="text" name="lastname"></ul>
+                    <ul>Username:-<input type="text" name="username"></ul>
+                    <ul>Password:-<input type="password" name="password"></ul>
+                    <ul>Email Address:-<input type="text" name="email"></ul>
                 </ul>
                 <br/>
-                <input type="submit" value="Regidter"> 
+                <input type="submit" value="Register" id="loginbutton"> 
             </form>
 
         </article>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
+                <%--<li class="footer"><a href="/Instagrim">Home</a></li> --%>
             </ul>
         </footer>
     </body>

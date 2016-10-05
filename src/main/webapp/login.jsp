@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,31 +16,64 @@
     </head>
     <body>
         <header>
-        <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
+        <h1 align="center"> Instagrim! </h1>
+        <i><h2 align="center"> See the world differently</h2> </i>
+           
         </header>
         <nav>
-            <ul>
-                
-                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+            <ul id="menu">
+                <li><a href="/Instagrim">Home</a></li>
+                <li><a href="/Instagrim/Profile">Profile</a></li>   <%-- only if logged in? --%>
+                <li><a href="/Instagrim">Search</a></li>
+                <li><a href="upload.jsp">Upload</a></li>
+                    <%
+                        
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        if (lg != null) {
+                            String UserName = lg.getUsername();
+                            if (lg.getlogedin()) {
+                    %>
+
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li><a href="/Instagrim/Logout">Logout</a></li>
+                    <%}
+                            }else{
+                                %>
+                 <li><a href="register.jsp">Register</a></li>
+                <li><a href="login.jsp">Login</a></li>
+                <%
+                                        
+                            
+                    }%>
             </ul>
         </nav>
+              <%--  <li><a href="/Instagrim/Images/majed">Sample Images</a></li> --%>
+            
        
-        <article>
-            <h3>Login</h3>
+        <article> 
+            
+            
+            <h3 id="loginpart">Login</h3>
+         
             <form method="POST"  action="Login">
                 <ul>
-                    <li>User Name <input type="text" name="username"></li>
-                    <li>Password <input type="password" name="password"></li>
+                    
+                    
+                    <ul align="left">Username:-<input type="text"  name="username"></ul>
+                    
+                    <ul align="left">Password:-<input type="password" name="password"></ul>
+                    
+                    
                 </ul>
                 <br/>
-                <input type="submit" value="Login"> 
+                <%-- may not be empty --%> 
+                <input type="submit" value="Login to Instagrim" id="loginbutton" text-align="right"> 
             </form>
 
-        </article>
+        </article> 
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
+              <%--  <li class="footer"><a href="/Instagrim">Home</a></li> --%>
             </ul>
         </footer>
     </body>
