@@ -25,6 +25,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.*;
  * @author gemmawhyte
  */
 @WebServlet(name = "Profile", urlPatterns = {"/Profile"})
+
 public class Profile extends HttpServlet {
     Cluster cluster=null;
     

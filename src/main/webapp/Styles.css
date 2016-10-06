@@ -168,3 +168,7 @@ li a {
     display: inline-block;
     width: 25%;
 }
+
+#welcome {
+    font-family: sans-serif;
+}

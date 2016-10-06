@@ -86,7 +86,7 @@ public class User {
        public ProfileTemplate getProfileInfo(String username, ProfileTemplate profile)
        {
           Session session = cluster.connect("instagrim"); 
-          PreparedStatement ps = session.prepare("select * from userprofiles where login=?");
+          PreparedStatement ps = session.prepare("SELECT * from userprofiles WHERE login=?");
           ResultSet rs = null;
           BoundStatement boundStatement = new BoundStatement(ps);
           rs = session.execute (
@@ -109,6 +109,16 @@ public class User {
        }
           return profile;
        }
+       
+       public void deleteUser(String username)
+     {
+        Session session = cluster.connect("instagrim");
+
+        PreparedStatement ps = session.prepare("DELETE from userprofiles WHERE login=?");
+        BoundStatement selectUser = new BoundStatement(ps);
+        session.execute(selectUser.bind(username));
+        
+    }
 
 }
 
