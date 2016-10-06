@@ -26,7 +26,7 @@
             <ul id="menu">
 
                 <li><a href="/Instagrim">Home</a></li>
-                <li><a href="/Instagrim/Profile">Profile</a></li>   <%-- only if logged in? --%>
+                   <%-- only if logged in? --%>
                 <li><a href="/Instagrim">Search</a></li>
                 <li><a href="upload.jsp">Upload</a></li>
                     <%
@@ -36,8 +36,9 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-
+                <li><a href="/Instagrim/Profile">Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                
                 <li><a href="/Instagrim/Logout">Logout</a></li>
                     <%}
                             }else{
@@ -59,8 +60,8 @@
                 
         
              <%-- ADD THIS BACK IN AT END  <li class="footer"><a href="/Instagrim">Home</a></li> --%>
-                <ul>&COPY; Andy C and Gemma Whyte</ul> 
-                <ul> Testing </ul>
+                <%--<ul>&COPY; Andy C and Gemma Whyte</ul> 
+                <ul> Testing </ul> --%>
             </ul>
             
         </footer>

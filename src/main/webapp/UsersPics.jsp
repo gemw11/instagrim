@@ -27,7 +27,7 @@
             <ul id="menu">
 
                 <li><a href="/Instagrim">Home</a></li>
-                <li><a href="/Instagrim/Profile">Profile</a></li>   <%-- only if logged in? --%>
+                   <%-- only if logged in? --%>
                 <li><a href="/Instagrim">Search</a></li>
                 <li><a href="/Instagrim/upload.jsp">Upload</a></li>
                     <%
@@ -37,7 +37,7 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-
+                <li><a href="/Instagrim/Profile">Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li><a href="/Instagrim/Logout">Logout</a></li>
                     <%}
@@ -57,12 +57,12 @@
         </nav>
  
         <article>
-            <h1>Your Pics</h1>
+            <h1>Your Pictures</h1>
         <%
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
             if (lsPics == null) {
         %>
-        <p>No Pictures found</p>
+        <p>You have not uploaded a picture yet!</p>
         <%
         } else {
             Iterator<Pic> iterator;
@@ -79,8 +79,8 @@
         </article>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
+               <%-- <li class="footer"><a href="/Instagrim">Home</a></li>
+            --%></ul>
         </footer>
     </body>
 </html>

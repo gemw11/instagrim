@@ -24,7 +24,7 @@
             <ul id="menu">
 
                 <li><a href="/Instagrim">Home</a></li>
-                <li><a href="/Instagrim/Profile">Profile</a></li>   <%-- only if logged in? --%>
+                  <%-- only if logged in? --%>
                 <li><a href="/Instagrim">Search</a></li>
                <%-- <li><a href="/Instagrim/Images/majed">Sample Images</a></li> --%>
                 <li><a href="upload.jsp">Upload</a></li>
@@ -35,7 +35,7 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-
+                   <li><a href="/Instagrim/Profile">Profile</a></li> 
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li><a href="/Instagrim/Logout">Logout</a></li>
                     <%}
@@ -61,6 +61,7 @@
             <h3 id="registerheader">Register as a new user..</h3>
             <form method="POST"  action="Register">
                 <ul>
+                    <%-- mandatory fields? --%>
                     <ul>First Name:-<input type="text" name="firstname"></ul>
                     <ul>Last Name:-<input type="text" name="lastname"></ul>
                     <ul>Username:-<input type="text" name="username"></ul>

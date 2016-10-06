@@ -27,6 +27,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.*;
 @WebServlet(name = "Profile", urlPatterns = {"/Profile"})
 public class Profile extends HttpServlet {
     Cluster cluster=null;
+    
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();

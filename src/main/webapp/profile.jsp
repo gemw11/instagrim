@@ -21,7 +21,7 @@
             <ul id="menu">
 
                 <li><a href="/Instagrim">Home</a></li>
-                <li><a href="/Instagrim/Profile">Profile</a></li>   <%-- only if logged in? --%>
+                   <%-- only if logged in? --%>
                 <li><a href="/Instagrim">Search</a></li>
                 <li><a href="upload.jsp">Upload</a></li>
                     <%
@@ -31,7 +31,7 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-
+                <li><a href="/Instagrim/Profile">Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li><a href="/Instagrim/Logout">Logout</a></li>
                     <%}
@@ -56,15 +56,24 @@
         
                         if (log != null) {
                             String UserName = log.getUsername(); %>
-                            <h2 align="center">You are logged in as:  <%=UserName%></h2>
+                            
+                            <h1> Your Profile </h1>
+                            <%-- <ul>First Name:-<input type="text" name="firstname"></ul> --%>
+                            <h2 align="center"> Profile Picture: </h2>
+                            <input type="submit" value="Update Profile Picture" id="profpic"> 
+                            
+                            
+                            
+                            <h2 align="center"> You are logged in as:  <%=UserName%></h2>
                             <h3 align="center"> Hello <%=UserName%></h3>
+                            
                             <h3 align="center"> First Name: <%=profile.getFirstName()%></h3>
                             <h3 align="center"> Last Name: <%=profile.getLastName()%></h3>
                             <h3 align="center"> Email: <%=profile.getEmail()%></h3>
                             
                             
-                            
-                            
+     <input type="submit" value="Update Profile Information" id="updateprofile">   
+    <input type="submit" value="Delete Profile" id="deleteprofile">   
                         <%} %>        
     </body>
 </html>

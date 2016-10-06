@@ -79,10 +79,7 @@ li a {
     font-size: 15px;
     border-radius: 10px;
     color: black;
-    border: 2px solid blue;
-   
-    
-    
+    border: 2px solid blue;    
 }
 
 #loginbutton:hover {
@@ -95,8 +92,64 @@ li a {
     
 }
 
-#uploadfile {
+#updateprofile {
+    background-color: white;
+    font-family: sans-serif;
+    position: relative;
+    width: 25%;
+    padding: 10px;
+    font-size: 15px;
+    border: 2px solid limegreen;
+    border-radius: 10px;
+    color: black; 
+    
 }
+
+#deleteprofile {
+    background-color: white;
+    font-family: sans-serif;
+    
+    width: 25%;
+    padding: 10px;
+    font-size: 15px;
+    border: 2px solid red;
+    border-radius: 10px;
+    color: black;  
+
+}
+
+#updateprofile:hover {
+    
+    background-color: limegreen;
+        color: white;
+}
+
+#deleteprofile:hover {
+    background-color: red;
+    color: white;
+    
+}
+
+#profpic {
+    background-color: white;
+    font-family: sans-serif;
+    position: relative;
+    width: 15%;
+    padding: 10px;
+    font-size: 12px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    color: black; 
+    
+}
+
+#profpic:hover {
+    
+    background-color: blue;
+    color: white;
+}
+
+
     
     
     

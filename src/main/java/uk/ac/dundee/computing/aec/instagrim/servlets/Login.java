@@ -49,11 +49,11 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         // takes information from the Register fields
         // ------------------------------------------------
-        String firstname=request.getParameter("firstname");
-        String lastname=request.getParameter("lastname");
+       // String firstname=request.getParameter("firstname");
+      //  String lastname=request.getParameter("lastname");
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        String email=request.getParameter("email");
+       // String email=request.getParameter("email");
         // ------------------------------------------------
         
         User us=new User();
@@ -69,14 +69,7 @@ public class Login extends HttpServlet {
             //request.setAttribute("LoggedIn", lg);
             
             session.setAttribute("LoggedIn", lg);
-            System.out.println("Session in servlet "+session);
-            
-            
-            
-            
-            
-            
-            
+            System.out.println("Session in servlet "+session);  
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
 	    rd.forward(request,response);
             

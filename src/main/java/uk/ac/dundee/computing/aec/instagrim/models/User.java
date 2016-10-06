@@ -93,7 +93,7 @@ public class User {
                 boundStatement.bind(
                 username));
           
-          String storedFirstName = null;
+          //String storedFirstName = null;
           
           if (rs.isExhausted()) {
             System.out.println("No profile information obtained from database");

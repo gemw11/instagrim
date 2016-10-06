@@ -49,6 +49,14 @@ public final class Keyspaces {
                     + "      email text,\n"
                     + "      addresses  map<text, frozen <address>>\n"
                     + "  );";
+            
+            // String CreateProfilePicture = "CREATE TABLE if not exists instagrim.profilepicture (\n"
+            //+ "picid uuid \n"
+            //+"image blob,"
+            //+"thumb blob,"
+                    
+            
+            
             Session session = c.connect();
             try {
                 PreparedStatement statement = session
