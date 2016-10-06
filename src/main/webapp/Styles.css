@@ -149,13 +149,22 @@ li a {
     color: white;
 }
 
+#updateform 
+{
+   
+   font-family: sans-serif;
+   color: darkslateblue;
+    
+}
 
+#updateprofile {
+    position: relative;
+    width: 25%;
     
-    
-    
-    
-    
-    
-    
-    
-    
+
+}
+
+#deleteprofile {
+    display: inline-block;
+    width: 25%;
+}

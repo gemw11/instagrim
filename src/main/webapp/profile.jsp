@@ -57,23 +57,33 @@
                         if (log != null) {
                             String UserName = log.getUsername(); %>
                             
-                            <h1> Your Profile </h1>
+                            <h1> <%=profile.getFirstName()%> <%=profile.getLastName()%>'s Profile </h1>
                             <%-- <ul>First Name:-<input type="text" name="firstname"></ul> --%>
                             <h2 align="center"> Profile Picture: </h2>
                             <input type="submit" value="Update Profile Picture" id="profpic"> 
                             
+                           
+                
+                            <h2 align="center"> Welcome back <%=UserName%>!</h2>
+                                <b><ul align="center" id="updateform">User Name:-<input type="text" name="username" value="<%=UserName%>" readonly></ul></b>
+                                <b><ul align="center" id="updateform">First Name:-<input type="text" name="firstname" value="<%=profile.getFirstName()%>" required></ul></b>
+                                <b> <ul align="center" id="updateform">Last Name:-<input type="text" name="lastname" value="<%=profile.getLastName()%>" required></ul></b>
+                                <b><ul align="center" id="updateform">Email Address:-<input type="text" name="email" value="<%=profile.getEmail()%>" required></ul></b>
+                                
                             
-                            
-                            <h2 align="center"> You are logged in as:  <%=UserName%></h2>
+                           <%-- <h2 align="center"> You are logged in as:  <%=UserName%></h2>
                             <h3 align="center"> Hello <%=UserName%></h3>
                             
                             <h3 align="center"> First Name: <%=profile.getFirstName()%></h3>
                             <h3 align="center"> Last Name: <%=profile.getLastName()%></h3>
-                            <h3 align="center"> Email: <%=profile.getEmail()%></h3>
+                            <h3 align="center"> Email: <%=profile.getEmail()%></h3> --%>
                             
                             
-     <input type="submit" value="Update Profile Information" id="updateprofile">   
-    <input type="submit" value="Delete Profile" id="deleteprofile">   
+                            
+                            
+                           
+                           <input type="submit" value="Update Profile Information" id="updateprofile">  
+                           <input type="submit" value="Delete Profile" id="deleteprofile"> 
                         <%} %>        
     </body>
 </html>
