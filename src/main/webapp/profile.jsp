@@ -85,7 +85,7 @@
                            <ul align="center"><input type="submit" value="Update Profile Information" id="updateprofile">  </ul>
                            
                            <form method="POST"  action="DeleteProfile">
-                               <ul align="center"><input type="submit" value="Delete Profile" id="deleteprofile"> </ul>
+                               <ul align="center"><input type="submit" value="Delete Profile" id="deleteprofile" onclick="return confirm('<%=UserName%>, are you sure you want to delete your account?')"/> </ul>
                            </form>
                         <%} %>        
     </body>

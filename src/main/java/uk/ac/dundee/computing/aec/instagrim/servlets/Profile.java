@@ -24,8 +24,11 @@ import uk.ac.dundee.computing.aec.instagrim.stores.*;
  *
  * @author gemmawhyte
  */
-@WebServlet(name = "Profile", urlPatterns = {"/Profile"})
-
+@WebServlet(urlPatterns = {
+    "/Profile",
+    "/DeleteProfile"
+    
+})
 public class Profile extends HttpServlet {
     Cluster cluster=null;
     
@@ -69,7 +72,7 @@ public class Profile extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
         rd.forward(request, response);
     }
-
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -81,6 +84,16 @@ public class Profile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+        String username = lg.getUsername();
+        // --------------------------------
+        User us =new User();
+        us.setCluster(cluster);
+        us.deleteUser(username);
+        // better way to do this????? check
+            response.sendRedirect("/Instagrim/Logout");
     }
 
     /**
