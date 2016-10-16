@@ -31,7 +31,7 @@ font-size: larger;
  
     list-style-type: none;
     
-    padding: 5px;
+   
     overflow: hidden;
     background-color: lightgrey;
     position: static;
@@ -41,13 +41,13 @@ font-size: larger;
     text-decoration: none;
     border-bottom: 1px solid black;
     display: inline-block;
+    text-align: center;
 }
 
 
 
 li {
-   float: left;
-   border-right: 1px solid grey;
+   
    display: inline;
 }
 li:last-child {
@@ -73,9 +73,9 @@ li a {
     
     background-color: white;
     font-family: sans-serif;
-    position: absolute;
+    padding: 5px;
     width: 25%;
-    padding: 10px;
+    
     font-size: 15px;
     border-radius: 10px;
     color: black;
@@ -171,4 +171,9 @@ li a {
 
 #welcome {
     font-family: sans-serif;
+}
+
+#usernamepass {
+    font-family: sans-serif;
+    color: red;
 }

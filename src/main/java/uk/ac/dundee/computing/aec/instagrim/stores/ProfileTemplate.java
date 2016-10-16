@@ -15,6 +15,7 @@ public class ProfileTemplate
     private String firstname = null;
     private String lastname = null;
     private String email = null;
+    private Pic profilePicture = null;
     //private String city = null;
     //private String phoneNumber = null;
 
@@ -51,5 +52,19 @@ public String getEmail()
 {
     return email;
 }
+
+public void setProfilePicture(Pic pic)
+    {
+        this.profilePicture = pic;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public Pic getProfilePicture()
+    {
+        return profilePicture;
+    }
 
 }

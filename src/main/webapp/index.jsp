@@ -27,7 +27,7 @@
 
                 <li><a href="/Instagrim">Home</a></li>
                    <%-- only if logged in? --%>
-                <li><a href="/Instagrim">Search</a></li>
+                <li><a href="search.jsp">Search</a></li>
                 <li><a href="upload.jsp">Upload</a></li>
                     <%
                         
@@ -55,13 +55,15 @@
                 
             </ul>
         </nav>
+                    <IMG HEIGHT="500" WIDTH="500" SRC="IMG_3710.jpg">
+                   
         <footer>
             <ul>
                 
         
              <%-- ADD THIS BACK IN AT END  <li class="footer"><a href="/Instagrim">Home</a></li> --%>
-                <%--<ul>&COPY; Andy C and Gemma Whyte</ul> 
-                <ul> Testing </ul> --%>
+             <b><ul>&COPY; Andy C and Gemma Whyte </ul>  </b>
+                
             </ul>
             
         </footer>

@@ -22,7 +22,7 @@
 
                 <li><a href="/Instagrim">Home</a></li>
                    <%-- only if logged in? --%>
-                <li><a href="/Instagrim">Search</a></li>
+                <li><a href="search.jsp">Search</a></li>
                 <li><a href="upload.jsp">Upload</a></li>
                     <%
                         
@@ -60,15 +60,19 @@
                             <h1> <%=profile.getFirstName()%> <%=profile.getLastName()%>'s Profile </h1>
                             <%-- <ul>First Name:-<input type="text" name="firstname"></ul> --%>
                             <%--<h2 align="center"> Profile Picture: </h2> --%>
+                            
+                            <form method="POST" enctype="multipart/form-data" action="ProfilePic">
+                            
+                            <img id="ProfilePicture" alt="default profile picture">
+                            File to upload: <input type="file" class="" name="profilepic">
                             <input type="submit" value="Update Profile Picture" id="profpic"> 
+                            </form>
+                
                             
                            
                 
                                 <h2 align="center" id="welcome"> Welcome back <%=UserName%>!</h2>
-                                <b><ul align="center" id="updateform">User Name:-<input type="text" name="username" value="<%=UserName%>" readonly></ul></b>
-                                <b><ul align="center" id="updateform">First Name:-<input type="text" name="firstname" value="<%=profile.getFirstName()%>" required></ul></b>
-                                <b> <ul align="center" id="updateform">Last Name:-<input type="text" name="lastname" value="<%=profile.getLastName()%>" required></ul></b>
-                                <b><ul align="center" id="updateform">Email Address:-<input type="text" name="email" value="<%=profile.getEmail()%>" required></ul></b>
+                                
                                 
                             
                            <%-- <h2 align="center"> You are logged in as:  <%=UserName%></h2>
@@ -80,10 +84,16 @@
                             
                             
                             
-                            
-                           
+                            <%-- Update Profile --%>
+                           <form method="POST"  action="UpdateProfile">
+                               <b><ul align="center" id="updateform">User Name:-<input type="text" name="username" value="<%=UserName%>" readonly></ul></b>
+                                <b><ul align="center" id="updateform">First Name:-<input type="text" name="firstname" value="<%=profile.getFirstName()%>" required></ul></b>
+                                <b> <ul align="center" id="updateform">Last Name:-<input type="text" name="lastname" value="<%=profile.getLastName()%>" required></ul></b>
+                                <b><ul align="center" id="updateform">Email Address:-<input type="text" name="email" value="<%=profile.getEmail()%>" required></ul></b>
                            <ul align="center"><input type="submit" value="Update Profile Information" id="updateprofile">  </ul>
+                           </form>
                            
+                           <%-- Delete Profile --%>
                            <form method="POST"  action="DeleteProfile">
                                <ul align="center"><input type="submit" value="Delete Profile" id="deleteprofile" onclick="return confirm('<%=UserName%>, are you sure you want to delete your account?')"/> </ul>
                            </form>

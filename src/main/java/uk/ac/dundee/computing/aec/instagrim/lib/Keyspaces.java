@@ -49,7 +49,18 @@ public final class Keyspaces {
                     + "      email text,\n"
                     + "      addresses  map<text, frozen <address>>\n"
                     + "  );";
-            
+            // new keyspace for holding prof pics (same format as profile etc, picid, blob)
+            String CreateProfilePicture = "CREATE TABLE if not exists instagrim.profilepictures (\n"
+                    + " user varchar,\n"
+                    + " picid uuid,\n"
+                    + " image blob,\n"
+                    + " thumb blob,\n"
+                    + " imagelength int,\n"
+                    + " thumblength int,\n"
+                    + " type varchar,\n"
+                    + " name varchar,\n"
+                    + " PRIMARY KEY (user)"
+                    + ")";    
             // String CreateProfilePicture = "CREATE TABLE if not exists instagrim.profilepicture (\n"
             //+ "picid uuid \n"
             //+"image blob,"
@@ -100,6 +111,13 @@ public final class Keyspaces {
                 session.execute(cqlQuery);
             } catch (Exception et) {
                 System.out.println("Can't create Address Profile " + et);
+            }
+            System.out.println("" + CreateProfilePicture);
+            try {
+                SimpleStatement cqlQuery = new SimpleStatement(CreateProfilePicture);
+                session.execute(cqlQuery);
+            } catch (Exception et) {
+                System.out.println("Can't create ProfilePic " + et);
             }
             session.close();
 

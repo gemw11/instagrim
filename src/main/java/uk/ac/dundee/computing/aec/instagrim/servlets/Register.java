@@ -7,8 +7,15 @@
 package uk.ac.dundee.computing.aec.instagrim.servlets;
 
 import com.datastax.driver.core.Cluster;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -71,5 +78,32 @@ public class Register extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    public void setDefaultPP(String username) throws IOException {
+        try
+        {
+            String picName = "dexter.jpg";
+            // Get the image from resources (image->images)
+            Path path = Paths.get("/image/" + picName);
+            String type = Files.probeContentType(path);
+        // SO WHEN USER REGISTERS AN ACCOUNT - ASSIGN A DEFAULT PP TO MAKE IT EASIER TO UPDATE
+        // AS SET METHOD WOULD ONLY BE USED ONCE
+            InputStream inputstream = getClass().getResourceAsStream("/images/" + picName);
+            ByteArrayOutputStream outputstream = new ByteArrayOutputStream();
+            BufferedImage bufferedImage = ImageIO.read(inputstream);
+            ImageIO.write(bufferedImage, "jpg", outputstream);
+            byte[] imageInByte = outputstream.toByteArray();
+            User us = new User();
+            us.setCluster(cluster);
+            //us.setProfilePicture(imageInByte, type, "ProfilePicture", username);
+            inputstream.close();
+        }
+        catch(Exception e)
+        {
+        
+        }
+        
+        
+    }
 
 }

@@ -24,7 +24,7 @@
             <ul id="menu">
                 <li><a href="/Instagrim">Home</a></li>
                    <%-- only if logged in? --%>
-                <li><a href="/Instagrim">Search</a></li>
+                <li><a href="search.jsp">Search</a></li>
                 <li><a href="upload.jsp">Upload</a></li>
                     <%
                         
@@ -53,21 +53,21 @@
         <article> 
             
             
-            <h3 id="loginpart">Login</h3>
+            <u><h3 id="loginpart">Login</h3></u>
          
             <form method="POST"  action="Login">
                 <ul>
                     
                     
-                    <ul align="left">Username:-<input type="text"  name="username"></ul>
+                    <ul id="loginpart">Username:-<input type="text"  name="username"></ul>
                     
-                    <ul align="left">Password:-<input type="password" name="password"></ul>
+                    <ul id="loginpart">Password:-<input type="password" name="password"></ul>
                     
                     
                 </ul>
                 <br/>
                 <%-- may not be empty --%> 
-                <input type="submit" value="Login to Instagrim" id="loginbutton" text-align="right"> 
+                <input type="submit" value="Login to Instagrim" id="loginbutton" text-align="right">
             </form>
 
         </article> 
