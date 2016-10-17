@@ -28,7 +28,7 @@
 
                 <li><a href="/Instagrim">Home</a></li>
                    <%-- only if logged in? --%>
-                <li><a href="search.jsp">Search</a></li>
+                <li><a href="/Instagrim/search.jsp">Search</a></li>
                 <li><a href="upload.jsp">Upload</a></li>
                     <%
                         
@@ -46,8 +46,8 @@
                                 %>
                 
                 
-                 <li><a href="register.jsp">Register</a></li>
-                <li><a href="login.jsp">Login</a></li>
+                 <li><a href="/Instagrim/Register">Register</a></li>
+                <li><a href="/Instagrim/Login">Login</a></li>
                 <%
                                         
                             

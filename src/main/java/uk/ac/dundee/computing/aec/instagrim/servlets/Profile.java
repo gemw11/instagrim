@@ -85,31 +85,7 @@ public class Profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        
-//        try 
-//            {
-//                System.out.println("1");
-//                HttpSession session=request.getSession();
-//                System.out.println("2");
-//                LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-//                System.out.println("3");
-//                ProfileTemplate profile = new ProfileTemplate();
-//                System.out.println("4");
-//                User us = new User();
-//                us.setCluster(cluster);
-//                System.out.println("5");
-//                profile = us.getProfileInfo(lg.getUsername(), profile);
-//                System.out.println("6");
-//                session.setAttribute("Profile", profile);
-//                RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
-//                rd.forward(request, response);
-//            } 
-//            catch (ServletException | IOException e) 
-//            {
-//                System.out.println("Failed to get profile " + e);
-//            }
-
+      
                 User us = new User();
         us.setCluster(cluster);
         String args[] = Convertors.SplitRequestPath(request);
@@ -135,18 +111,16 @@ public class Profile extends HttpServlet {
                     return;
                 }      
                 try {
-                    System.out.println("4");
                     profile = us.getProfileInfo(lg.getUsername(), profile);
-                    System.out.println("5");
                     request.setAttribute("ProfileTemplate", profile);
                 RequestDispatcher rd = request.getRequestDispatcher("/profile.jsp");
-                System.out.println("6");
                 rd.forward(request, response);
                 } catch (Exception ex) {
                     Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
                 }
             
             }
+        //
             else
         {
             response.sendRedirect("index.jsp");
@@ -179,20 +153,16 @@ public class Profile extends HttpServlet {
         }
         else if(args[1].equals("ProfilePic"))
         {
-            System.out.println("profile dopost");
             try {
                 updateProfilePic(request, response, username);
-                System.out.println("after update");
                 response.sendRedirect("/Instagrim/Profile");
             } catch (Exception ex) {
                 System.out.println("### Error ###\n" + ex.getMessage());
-                //Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }
         else if(args[1].equals("UpdateProfile"))
         {
-           //            // Update Profile
            updateProf(request, response, username);
            response.sendRedirect("/Instagrim/Profile"); 
         }
@@ -227,13 +197,6 @@ public class Profile extends HttpServlet {
     }
     protected void updateProfilePic(HttpServletRequest request, HttpServletResponse response, String name) throws ServletException, IOException, Exception 
     {   
-        System.out.println("uPDATE profile pic method");
-       // String username = name;
-        //User us=new User();
-        //Pic profilePic = null;
-        //us.setCluster(cluster);
-        //us.updateProfilePic(profilePic, username);
-        
         for (Part part : request.getParts()) 
         {
             
@@ -269,33 +232,6 @@ public class Profile extends HttpServlet {
         
         System.out.println("Skipped loop...");
     }
-    
-//    private void displayProfilePicture(String username, HttpServletResponse response) throws ServletException, IOException 
-//    {
-//        User us = new User();
-//        us.setCluster(cluster);
-//        
-//        
-//        Pic p = us.getProfilePic();
-//        try (OutputStream out = response.getOutputStream()) {
-//            response.setContentType(p.getType());
-//            response.setContentLength(p.getLength());
-//            InputStream is = new ByteArrayInputStream(p.getBytes());
-//            BufferedInputStream input = new BufferedInputStream(is);
-//            byte[] buffer = new byte[8192];
-//            for (int length; (length = input.read(buffer)) > 0;) {
-//                out.write(buffer, 0, length);
-//            }
-//        } catch (Exception e) {
-////            Message m = new Message();
-////            m.setMessageTitle("Error :");
-////            m.setMessage("Error displaying image" + e.getMessage());
-////            m.setPageRedirectName("Home");
-////            m.setPageRedirect("/InstagrimHarry");
-////            request.setAttribute("message", m);
-////            RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
-////            dispatcher.forward(request, response);
-//        }
     
     public void displayProfilePicture(Pic profilepic, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Pic p = profilepic;

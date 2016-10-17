@@ -102,35 +102,14 @@ public class Register extends HttpServlet {
         {
         
         }
+    }
         
-        
-        
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
+            rd.forward(request, response);
+            
+            
+        }
         
     }
-    
-//       public void uploadDefaultProfilePicture(String username) throws IOException {
-//        try 
-//        {
-//            String profilePictureName = "dexter.jpg";
-//            Path path = Paths.get("/image/" + profilePictureName);
-//            String type = Files.probeContentType(path);
-//           
-//            InputStream inputstream = getClass().getResourceAsStream("/image/" + profilePictureName);
-//           
-//            BufferedImage bufferedImage = ImageIO.read(inputstream);
-//            
-//            ByteArrayOutputStream outputstream = new ByteArrayOutputStream();
-//            ImageIO.write(bufferedImage, "jpg", outputstream);
-//            byte[] imageInByte = outputstream.toByteArray();
-//            User us = new User();
-//            us.setCluster(cluster);
-//            us.setProfilePicture(imageInByte, type, "ProfilePicture", username);
-//            inputstream.close();
-//        } 
-//        catch (Exception e) 
-//        {
-//            System.out.println(e);
-//        }
-//    }
-
-}

@@ -45,8 +45,8 @@
                                 %>
                 
                 
-                 <li><a href="register.jsp">Register</a></li>
-                <li><a href="login.jsp">Login</a></li>
+                 <li><a href="/Instagrim/Register">Register</a></li>
+                <li><a href="/Instagrim/Login">Login</a></li>
                 <%
                                         
                             
@@ -55,7 +55,7 @@
                 
             </ul>
         </nav>
-                    <IMG HEIGHT="500" WIDTH="500" SRC="IMG_3710.jpg">
+                    <IMG HEIGHT="500" WIDTH="500" SRC="IMG_6600.jpg">
                    
         <footer>
             <ul>

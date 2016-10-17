@@ -133,10 +133,20 @@ public class User {
        public void deleteUser(String username)
      {
         Session session = cluster.connect("instagrim");
-
+        
+        PreparedStatement ps1 = session.prepare("DELETE from profilepictures WHERE user=?");
+        BoundStatement selectUser1 = new BoundStatement(ps1);
+        session.execute(selectUser1.bind(username));
+       
         PreparedStatement ps = session.prepare("DELETE from userprofiles WHERE login=?");
         BoundStatement selectUser = new BoundStatement(ps);
         session.execute(selectUser.bind(username));
+        
+        PreparedStatement ps2 = session.prepare("DELETE from userpiclist WHERE user=?");
+        BoundStatement selectUser2 = new BoundStatement(ps2);
+        session.execute(selectUser2.bind(username));
+        
+        
         
     }
 
