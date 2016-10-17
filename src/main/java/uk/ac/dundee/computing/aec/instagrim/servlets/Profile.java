@@ -29,6 +29,7 @@ import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.*;
 import uk.ac.dundee.computing.aec.instagrim.lib.Convertors;
+import uk.ac.dundee.computing.aec.instagrim.models.*;
 /**
  *
  * @author gemmawhyte
@@ -84,46 +85,74 @@ public class Profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       
         
-        try 
-            {
-                HttpSession session=request.getSession();
-                LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                 ProfileTemplate profile = new ProfileTemplate();
+//        try 
+//            {
+//                System.out.println("1");
+//                HttpSession session=request.getSession();
+//                System.out.println("2");
+//                LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+//                System.out.println("3");
+//                ProfileTemplate profile = new ProfileTemplate();
+//                System.out.println("4");
+//                User us = new User();
+//                us.setCluster(cluster);
+//                System.out.println("5");
+//                profile = us.getProfileInfo(lg.getUsername(), profile);
+//                System.out.println("6");
+//                session.setAttribute("Profile", profile);
+//                RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
+//                rd.forward(request, response);
+//            } 
+//            catch (ServletException | IOException e) 
+//            {
+//                System.out.println("Failed to get profile " + e);
+//            }
+
                 User us = new User();
-                us.setCluster(cluster);
-                profile = us.getProfileInfo(lg.getUsername(), profile);
-                session.setAttribute("Profile", profile);
-                
-                // Go to profile page
-                RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
-                rd.forward(request, response);
-            } 
-            catch (ServletException | IOException e) 
-            {
-                System.out.println("Failed to get profile " + e);
-            }
-   
-        /*//gets profile info from user.java
-        System.out.println("DOGET----------------------------------------------");
-        HttpSession session=request.getSession();
-        System.out.println("DOGET 2");
-        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-        System.out.println("DOGET 3");
-        ProfileTemplate profile = new ProfileTemplate();
-        System.out.println("DOGET 4");
-        User us = new User();
-        System.out.println("DOGET 5");
         us.setCluster(cluster);
-        System.out.println("DOGET 6");
-        profile = us.getProfileInfo(lg.getUsername(), profile);
-        System.out.println("DOGET 7");
-        session.setAttribute("Profile", profile);
-        System.out.println("DOGET 8");
-        RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
-        System.out.println("DOGET 9");
-        rd.forward(request, response);
-        System.out.println("DOGET 10");*/
+        String args[] = Convertors.SplitRequestPath(request);
+        HttpSession session = request.getSession();
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+        ProfileTemplate profile = new ProfileTemplate();
+// Is user logged in?
+// NULL IN CONSOLE IN DO GET (POSSIBLY BECAUSE PROFILEPIC DOESNT EXIST????
+        if ( (lg != null) && (lg.getlogedin() == true) ) 
+        {   
+              if (args[1].equals("ProfilePic"))
+                {
+                    System.out.println("1");
+                    Pic profilepic;
+                   try {
+                       System.out.println("2");
+                        profilepic = us.getProfilePic(profile, lg.getUsername());
+                        displayProfilePicture(profilepic, request, response);
+                    } catch (Exception ex) {
+                        System.out.println("3");
+                        Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    return;
+                }      
+                try {
+                    System.out.println("4");
+                    profile = us.getProfileInfo(lg.getUsername(), profile);
+                    System.out.println("5");
+                    request.setAttribute("ProfileTemplate", profile);
+                RequestDispatcher rd = request.getRequestDispatcher("/profile.jsp");
+                System.out.println("6");
+                rd.forward(request, response);
+                } catch (Exception ex) {
+                    Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            }
+            else
+        {
+            response.sendRedirect("index.jsp");
+        }
+   
+        
     }
     
     /**
@@ -154,7 +183,7 @@ public class Profile extends HttpServlet {
             try {
                 updateProfilePic(request, response, username);
                 System.out.println("after update");
-                response.sendRedirect("/Instagrim"); 
+                response.sendRedirect("/Instagrim/Profile");
             } catch (Exception ex) {
                 System.out.println("### Error ###\n" + ex.getMessage());
                 //Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
@@ -207,14 +236,10 @@ public class Profile extends HttpServlet {
         
         for (Part part : request.getParts()) 
         {
-            System.out.println("uPDATE profile pic method 2");
-            String type = part.getContentType();
-            System.out.println("uPDATE profile pic method 3");
-            String filename = part.getSubmittedFileName();
-            System.out.println("uPDATE profile pic method 4");
             
+            String type = part.getContentType();
+            String filename = part.getSubmittedFileName();
             InputStream is = request.getPart(part.getName()).getInputStream();
-            System.out.println("uPDATE profile pic method 5");
             int i = is.available();
             HttpSession session=request.getSession();
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
@@ -244,4 +269,49 @@ public class Profile extends HttpServlet {
         
         System.out.println("Skipped loop...");
     }
+    
+//    private void displayProfilePicture(String username, HttpServletResponse response) throws ServletException, IOException 
+//    {
+//        User us = new User();
+//        us.setCluster(cluster);
+//        
+//        
+//        Pic p = us.getProfilePic();
+//        try (OutputStream out = response.getOutputStream()) {
+//            response.setContentType(p.getType());
+//            response.setContentLength(p.getLength());
+//            InputStream is = new ByteArrayInputStream(p.getBytes());
+//            BufferedInputStream input = new BufferedInputStream(is);
+//            byte[] buffer = new byte[8192];
+//            for (int length; (length = input.read(buffer)) > 0;) {
+//                out.write(buffer, 0, length);
+//            }
+//        } catch (Exception e) {
+////            Message m = new Message();
+////            m.setMessageTitle("Error :");
+////            m.setMessage("Error displaying image" + e.getMessage());
+////            m.setPageRedirectName("Home");
+////            m.setPageRedirect("/InstagrimHarry");
+////            request.setAttribute("message", m);
+////            RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+////            dispatcher.forward(request, response);
+//        }
+    
+    public void displayProfilePicture(Pic profilepic, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Pic p = profilepic;
+        try (OutputStream out = response.getOutputStream()) {
+            response.setContentType(p.getType());
+            response.setContentLength(p.getLength());
+            InputStream is = new ByteArrayInputStream(p.getBytes());
+            BufferedInputStream input = new BufferedInputStream(is);
+            byte[] buffer = new byte[p.getLength()];
+            for (int length; (length = input.read(buffer)) > 0;) {
+                out.write(buffer, 0, length);
+                out.close();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 }

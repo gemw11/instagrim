@@ -51,7 +51,7 @@
         </nav>
                     
         <% LoggedIn log = (LoggedIn) session.getAttribute("LoggedIn");
-            ProfileTemplate profile = (ProfileTemplate) session.getAttribute("Profile");
+            ProfileTemplate profile = (ProfileTemplate)request.getAttribute("ProfileTemplate");
         
         
                         if (log != null) {
@@ -63,7 +63,7 @@
                             
                             <form method="POST" enctype="multipart/form-data" action="ProfilePic">
                             
-                            <img id="ProfilePicture" alt="default profile picture">
+                            <img id="profilePicture" class="thumbnail" alt="User profile picture" src="${pageContext.request.contextPath}/ProfilePic">
                             File to upload: <input type="file" class="" name="profilepic">
                             <input type="submit" value="Update Profile Picture" id="profpic"> 
                             </form>
