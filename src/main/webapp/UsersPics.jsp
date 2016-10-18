@@ -88,6 +88,13 @@
             }
             }
         %>
+        
+         <%-- <form method="POST"  action="Comment"> --%>
+
+                        <input type="text" name="comment">
+                        <input type ="submit" value="Comment">
+         
+         </form>
         </article>
         <footer>
             <ul>

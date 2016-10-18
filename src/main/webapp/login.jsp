@@ -15,6 +15,39 @@
 
     </head>
     <body>
+        <%-- Java Script to validate Login Form --%>
+        <script>
+            function validateForm()
+            {
+                var usernameValue = document.getElementById("username").value;
+                var passwordValue = document.getElementById("password").value;
+                
+                validateForm_userFeedback.innerHTML = ""
+                
+                
+                if(usernameValue == "" && passwordValue == "")
+                {
+                    validateForm_userFeedback.innerHTML = "Error! You must enter a Username and Password to login!"
+                    return false;
+                }
+                if (usernameValue == "")
+                {
+                    validateForm_userFeedback.innerHTML = "Error! Username field must not be empty."
+                    return false;
+                }
+                if(passwordValue == "")
+                {
+                    validateForm_userFeedback.innerHTML = "Error! Password field must not be empty."
+                    return false;
+                }
+                
+                else
+                {
+                    return true;
+                }
+            }
+        </script>
+        
         <header>
         <h1 align="center"> Instagrim! </h1>
         <i><h2 align="center"> See the world differently</h2> </i>
@@ -55,14 +88,14 @@
             
             <u><h3 id="loginpart">Login</h3></u>
          
-            <form method="POST"  action="Login">
+            <form method="POST"  action="Login" onsubmit="return validateForm();">
                 <ul>
                     
                     
-                    <ul id="loginpart">Username:-<input type="text"  name="username"></ul>
+                    <ul id="loginpart">Username:-<input type="text"   id="username" name="username"></ul>
                     
-                    <ul id="loginpart">Password:-<input type="password" name="password"></ul>
-                    
+                    <ul id="loginpart">Password:-<input type="password" id="password" name="password"></ul>
+                    <p id = "validateForm_userFeedback"></p>
                     
                 </ul>
                 <br/>
@@ -72,9 +105,7 @@
 
         </article> 
         <footer>
-            <ul>
-              <%--  <li class="footer"><a href="/Instagrim">Home</a></li> --%>
-            </ul>
+            
         </footer>
     </body>
 </html>
