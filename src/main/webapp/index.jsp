@@ -5,6 +5,16 @@
 --%>
 
 
+<%-- THINGS TO DO:
+COMMENTS
+FILTERS 
+ORDERING PH0TOS BETTER?? 
+JS
+
+
+
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
 <!DOCTYPE html>
@@ -27,8 +37,8 @@
 
                 <li><a href="/Instagrim">Home</a></li>
                    <%-- only if logged in? --%>
-                <li><a href="search.jsp">Search</a></li>
-                <li><a href="upload.jsp">Upload</a></li>
+                <li><a href="/Instagrim/Search">Search</a></li>
+                <li><a href="/Instagrim/Upload">Upload</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -55,6 +65,7 @@
                 
             </ul>
         </nav>
+                    
                     <IMG HEIGHT="500" WIDTH="500" SRC="IMG_6600.jpg">
                    
         <footer>

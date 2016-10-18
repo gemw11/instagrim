@@ -28,8 +28,8 @@
 
                 <li><a href="/Instagrim">Home</a></li>
                    <%-- only if logged in? --%>
-                <li><a href="search.jsp">Search</a></li>
-                <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+                <li><a href="/Instagrim/Search">Search</a></li>
+                <li><a href="/Instagrim/Upload">Upload</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -45,8 +45,8 @@
                                 %>
                 
                 
-                 <li><a href="register.jsp">Register</a></li>
-                <li><a href="login.jsp">Login</a></li>
+                 <li><a href="/Instagrim/Register">Register</a></li>
+                <li><a href="/Instagrim/Login">Login</a></li>
                 <%
                                         
                             
@@ -71,7 +71,9 @@
                 Pic p = (Pic) iterator.next();
 
         %>
-        <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
+        <%-- <a href="/Instagrim/pictureServlet/?picID=<%=userPictureID%>" >
+            <img id="userPicture" src="/Instagrim/Image/<%=p.getSUUID()%>" alt="User Picture"></a> --%>
+        <a href="/Instagrim/Image/<%=p.getSUUID()%>"img id="userpictures" ><img id="userpictures" img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
 
             }
             }

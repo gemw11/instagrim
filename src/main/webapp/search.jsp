@@ -28,8 +28,8 @@
 
                 <li><a href="/Instagrim">Home</a></li>
                    <%-- only if logged in? --%>
-                <li><a href="/Instagrim/search.jsp">Search</a></li>
-                <li><a href="upload.jsp">Upload</a></li>
+                <li><a href="/Instagrim/Search">Search</a></li>
+                <li><a href="/Instagrim/Upload">Upload</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -56,10 +56,11 @@
                 
             </ul>
         </nav>
-                    <h3> Search for a User: </h3>
-                    <form method="POST" action="Search"> 
-                    Search: <input type="text" name="search"> 
-                    <input type="submit" value="Submit">
-                  </form>
+                    <h3> Search For A User: </h3>
+                    <p id="explore"> Explore! Find friends, family and more! </p>
+                    <form method="POST" action="Search">  
+                    Search: <input type="text" name="searchForUser"> 
+                    <input type="submit" value="Find Them!" id="searchbutton">
+                    </form> 
     </body>
 </html>

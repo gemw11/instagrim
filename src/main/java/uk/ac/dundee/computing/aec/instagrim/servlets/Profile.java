@@ -103,7 +103,7 @@ public class Profile extends HttpServlet {
                    try {
                        System.out.println("2");
                         profilepic = us.getProfilePic(profile, lg.getUsername());
-                        displayProfilePicture(profilepic, request, response);
+                        displayPP(profilepic, request, response);
                     } catch (Exception ex) {
                         System.out.println("3");
                         Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
@@ -233,7 +233,7 @@ public class Profile extends HttpServlet {
         System.out.println("Skipped loop...");
     }
     
-    public void displayProfilePicture(Pic profilepic, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void displayPP(Pic profilepic, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Pic p = profilepic;
         try (OutputStream out = response.getOutputStream()) {
             response.setContentType(p.getType());

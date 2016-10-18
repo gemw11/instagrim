@@ -24,8 +24,8 @@
             <ul id="menu">
                 <li><a href="/Instagrim">Home</a></li>
                    <%-- only if logged in? --%>
-                <li><a href="search.jsp">Search</a></li>
-                <li><a href="upload.jsp">Upload</a></li>
+                <li><a href="/Instagrim/Search">Search</a></li>
+                <li><a href="/Instagrim/Upload">Upload</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");

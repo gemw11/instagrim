@@ -71,6 +71,7 @@ public class Image extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
+        
         String args[] = Convertors.SplitRequestPath(request);
         int command;
         try {

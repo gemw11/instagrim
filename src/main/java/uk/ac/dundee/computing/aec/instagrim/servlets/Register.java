@@ -78,35 +78,12 @@ public class Register extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
-    public void setDefaultPP(String username) throws IOException {
-        try
-        {
-            String picName = "dexter.jpg";
-            // Get the image from resources (image->images)
-            Path path = Paths.get("/image/" + picName);
-            String type = Files.probeContentType(path);
-        // SO WHEN USER REGISTERS AN ACCOUNT - ASSIGN A DEFAULT PP TO MAKE IT EASIER TO UPDATE
-        // AS SET METHOD WOULD ONLY BE USED ONCE
-            InputStream inputstream = getClass().getResourceAsStream("/images/" + picName);
-            ByteArrayOutputStream outputstream = new ByteArrayOutputStream();
-            BufferedImage bufferedImage = ImageIO.read(inputstream);
-            ImageIO.write(bufferedImage, "jpg", outputstream);
-            byte[] imageInByte = outputstream.toByteArray();
-            User us = new User();
-            us.setCluster(cluster);
-            //us.setProfilePicture(imageInByte, type, "ProfilePicture", username);
-            inputstream.close();
-        }
-        catch(Exception e)
-        {
-        
-        }
-    }
+
         
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             
-            RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
+            // Redirect .jsp to servlet (within jsp page)
+            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
             rd.forward(request, response);
             
             

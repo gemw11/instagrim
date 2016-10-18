@@ -25,9 +25,9 @@
 
                 <li><a href="/Instagrim">Home</a></li>
                   <%-- only if logged in? --%>
-                <li><a href="search.jsp">Search</a></li>
+                <li><a href="/Instagrim/Search">Search</a></li>
                <%-- <li><a href="/Instagrim/Images/majed">Sample Images</a></li> --%>
-                <li><a href="upload.jsp">Upload</a></li>
+                <li><a href="/Instagrim/Upload">Upload</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -66,7 +66,7 @@
                     <ul>Last Name:-<input type="text" name="lastname"></ul>
                     <ul>Username:-<input type="text" name="username"></ul>
                     <ul>Password:-<input type="password" name="password"></ul>
-                    <ul>Email Address:-<input type="text" name="email"></ul>
+                    <ul>Email Address:-<input type="email" name="email"></ul>
                 </ul>
                 <br/>
                 <input type="submit" value="Register" id="loginbutton"> 
