@@ -57,12 +57,22 @@
         </nav>
  
         <article>
-            <h1>Your Pictures:</h1>
+           
+         <%
+            String username = (String)request.getAttribute("Username");
+            
+            %>
+            <h1><%=username%>'s Pictures</h1>
+            
         <%
+            // Create linked list for both pics and comments 
+            // comments associated with pic (pic id and user)
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
+            // CREATE NEW LINKED LIST FOR COMMENTS HERE
+            java.util.LinkedList<CommentTemplate> lsComments = (java.util.LinkedList<CommentTemplate>) request.getAttribute("Comments");
             if (lsPics == null) {
         %>
-        <p>You haven't uploaded any pictures yet! Why not upload one now? Show the world!</p>
+        <p>This user does not have any pictures yet!</p>
         <%
         } else {
             Iterator<Pic> iterator;

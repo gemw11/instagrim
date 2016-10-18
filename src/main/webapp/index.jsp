@@ -46,10 +46,10 @@ JS
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-                <li><a href="/Instagrim/Profile">Profile</a></li>
+                <li><a href="/Instagrim/Profile/<%=lg.getUsername()%>">Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 
-                <li><a href="/Instagrim/Logout">Logout</a></li>
+                <li><a href="/Instagrim/Logout" onclick="return confirm('Are you sure you wish to logout?')">Logout</a></li>
                     <%}
                             }else{
                                 %>

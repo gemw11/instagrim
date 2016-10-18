@@ -60,7 +60,16 @@ public final class Keyspaces {
                     + " type varchar,\n"
                     + " name varchar,\n"
                     + " PRIMARY KEY (user)"
-                    + ")";    
+                    + ")";  
+            // new keyspace for holding comments on each pic
+            String CreateCommentTable = "CREATE TABLE if not exists instagrim.commenttable (\n"
+                    + "commentid uuid,\n"
+                    + "picid uuid,\n"
+                    + "user varchar,\n"
+                    + "comment varchar,\n"
+                    + "commenttime timestamp,\n"
+                    + "PRIMARY KEY (picid,commentid)\n"
+                    + ") WITH CLUSTERING ORDER BY (commentidno desc);";
             // String CreateProfilePicture = "CREATE TABLE if not exists instagrim.profilepicture (\n"
             //+ "picid uuid \n"
             //+"image blob,"

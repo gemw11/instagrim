@@ -19,6 +19,10 @@ public class ProfileTemplate
     //private String city = null;
     //private String phoneNumber = null;
 
+//public void getUsername(String username)
+//{
+//    this.username = username;
+//}
 
 public void setFirstName(String firstname)
 {

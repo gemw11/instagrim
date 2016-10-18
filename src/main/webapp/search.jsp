@@ -56,6 +56,7 @@
                 
             </ul>
         </nav>
+                  
                     <h3> Search For A User: </h3>
                     <p id="explore"> Explore! Find friends, family and more! </p>
                     <form method="POST" action="Search">  

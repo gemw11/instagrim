@@ -51,11 +51,11 @@ public class Login extends HttpServlet {
         // ------------------------------------------------
        // String firstname=request.getParameter("firstname");
       //  String lastname=request.getParameter("lastname");
-        String username=request.getParameter("username");
-        String password=request.getParameter("password");
-       // String email=request.getParameter("email");
-        // ------------------------------------------------
-        
+      
+      
+      String username=request.getParameter("username");
+      String password=request.getParameter("password");
+
         User us=new User();
         us.setCluster(cluster);
         boolean isValid=us.IsValidUser(username, password);
@@ -73,11 +73,15 @@ public class Login extends HttpServlet {
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
 	    rd.forward(request,response);
             
-        }else{
+        }
+        else
+        {
             response.sendRedirect("/Instagrim/login.jsp");
         }
-        
-    }
+      }
+    
+
+    
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       
