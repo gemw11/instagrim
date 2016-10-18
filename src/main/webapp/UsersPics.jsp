@@ -57,12 +57,12 @@
         </nav>
  
         <article>
-            <h1>Your Pictures</h1>
+            <h1>Your Pictures:</h1>
         <%
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
             if (lsPics == null) {
         %>
-        <p>You have not uploaded a picture yet!</p>
+        <p>You haven't uploaded any pictures yet! Why not upload one now? Show the world!</p>
         <%
         } else {
             Iterator<Pic> iterator;

@@ -63,4 +63,15 @@
                     <input type="submit" value="Find Them!" id="searchbutton">
                     </form> 
     </body>
+    <footer>
+        
+        <ul>
+                
+        
+             <%-- ADD THIS BACK IN AT END  <li class="footer"><a href="/Instagrim">Home</a></li> --%>
+             <b><ul>&COPY; Andy C and Gemma Whyte </ul>  </b>
+                
+            </ul>
+        
+    </footer>
 </html>

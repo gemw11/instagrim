@@ -62,6 +62,7 @@ public class Register extends HttpServlet {
         
         User us=new User();
         us.setCluster(cluster);
+        
        
        us.RegisterUser(username, password, firstname, lastname, email);
         
