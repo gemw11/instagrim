@@ -36,17 +36,16 @@ public class Login extends HttpServlet {
         cluster = CassandraHosts.getCluster();
     }
     
-    private void error(String error, HttpServletResponse response) throws ServletException, IOException {
-       PrintWriter print = null;
-        print = new PrintWriter(response.getOutputStream());
-        print.println(error);
-        
-        print.println("Please go back to the previous page and re-enter your login credentials.");
-
-        print.close();
-        
-        
-    }
+//    private void error(String error, HttpServletResponse response) throws ServletException, IOException {
+//       PrintWriter print = null;
+//        print = new PrintWriter(response.getOutputStream());
+//        print.println(error);
+//        
+//        print.println("Please go back to the previous page and re-enter your login credentials.");
+//
+//        print.close();
+//  
+//    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -69,12 +68,12 @@ public class Login extends HttpServlet {
       String password=request.getParameter("password");
       
       // If no details provided
-        if(username == "" || password == ""){
-            error("You did not enter a username or password. Please try again.", response);
-        }
+//        if(username == "" || password == ""){
+//            error("You did not enter a username or password. Please try again.", response);
+//        }
        
         
-         if (username != "" && password != ""){
+//         if (username != "" && password != ""){
              // If login details provided
         User us=new User();
         us.setCluster(cluster);
@@ -99,7 +98,7 @@ public class Login extends HttpServlet {
             response.sendRedirect("/Instagrim/login.jsp");
         }
       }
-    }
+   
     
 
     

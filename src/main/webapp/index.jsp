@@ -6,10 +6,10 @@
 
 
 <%-- THINGS TO DO:
-COMMENTS
-FILTERS 
-ORDERING PH0TOS BETTER?? 
-JS
+COMMENTS **
+FILTERS **
+ORDERING PH0TOS BETTER?? /////////////
+JS /////////////////////
 
 
 
@@ -27,7 +27,7 @@ JS
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-       <%-- helloworld --%>
+       
         <h1 align="center"> Instagrim! </h1>
         <i><h2 align="center"> See the world differently</h2> </i>
             
@@ -70,11 +70,7 @@ JS
                    
         <footer>
             <ul>
-                
-        
-             <%-- ADD THIS BACK IN AT END  <li class="footer"><a href="/Instagrim">Home</a></li> --%>
-             <b><ul>&COPY; Andy C and Gemma Whyte </ul>  </b>
-                
+             <b><ul>&COPY; Andy C and Gemma Whyte </ul></b>   
             </ul>
             
         </footer>

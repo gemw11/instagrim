@@ -80,18 +80,10 @@
                     }%>
             </ul>
         </nav>
-              <%--  <li><a href="/Instagrim/Images/majed">Sample Images</a></li> --%>
-            
-       
         <article> 
-            
-            
             <u><h3 id="loginpart">Login</h3></u>
-         
             <form method="POST"  action="Login" onsubmit="return validateForm();">
                 <ul>
-                    
-                    
                     <ul id="loginpart">Username:-<input type="text"   id="username" name="username"></ul>
                     
                     <ul id="loginpart">Password:-<input type="password" id="password" name="password"></ul>
@@ -99,7 +91,6 @@
                     
                 </ul>
                 <br/>
-                <%-- may not be empty --%> 
                 <input type="submit" value="Login to Instagrim" id="loginbutton" text-align="right">
             </form>
 

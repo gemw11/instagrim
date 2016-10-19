@@ -218,4 +218,28 @@ li a {
     
 }
 
+#uploadfile {
+    font-family: sans-serif;
+    color: black;
+    
+}
+
+#submitimage {
+    
+    background-color: white;
+    font-family: sans-serif;
+    position: relative;
+    width: 15%;
+    padding: 10px;
+    font-size: 15px;
+    border: 2px solid purple;
+    border-radius: 10px;
+    color: black; 
+}
+
+#submitimage:hover{
+    
+    background-color: darkorchid;
+    color: white;
+}
 

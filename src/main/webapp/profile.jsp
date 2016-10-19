@@ -87,9 +87,9 @@
                             <%-- Update Profile --%>
                            <form method="POST"  action="UpdateProfile">
                                <b><ul align="center" id="updateform">User Name:-<input type="text" name="username" value="<%=UserName%>" readonly></ul></b>
-                                <b><ul align="center" id="updateform">First Name:-<input type="text" name="firstname" value="<%=profile.getFirstName()%>" required></ul></b>
-                                <b> <ul align="center" id="updateform">Last Name:-<input type="text" name="lastname" value="<%=profile.getLastName()%>" required></ul></b>
-                                <b><ul align="center" id="updateform">Email Address:-<input type="text" name="email" value="<%=profile.getEmail()%>" required></ul></b>
+                               <b><ul align="center" id="updateform">First Name:-<input type="text" name="firstname" value="<%=profile.getFirstName()%>" required></ul></b>
+                               <b> <ul align="center" id="updateform">Last Name:-<input type="text" name="lastname" value="<%=profile.getLastName()%>" required></ul></b>
+                               <b><ul align="center" id="updateform">Email Address:-<input type="text" name="email" value="<%=profile.getEmail()%>" required></ul></b>
                            <ul align="center"><input type="submit" value="Update Profile Information" id="updateprofile">  </ul>
                            </form>
                            
