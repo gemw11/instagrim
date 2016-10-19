@@ -11,7 +11,8 @@ FILTERS **
 ORDERING PH0TOS BETTER?? /////////////
 JS /////////////////////
 
-
+// Reused most of Andy's code to create new features.
+// i.e. Profile Picture used code from Image and Pic 
 
 --%>
 

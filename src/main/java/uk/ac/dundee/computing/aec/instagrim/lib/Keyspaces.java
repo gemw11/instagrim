@@ -63,13 +63,12 @@ public final class Keyspaces {
                     + ")";  
             // new keyspace for holding comments on each pic
             String CreateCommentTable = "CREATE TABLE if not exists instagrim.commenttable (\n"
-                    + "commentid uuid,\n"
                     + "picid uuid,\n"
                     + "user varchar,\n"
                     + "comment varchar,\n"
                     + "commenttime timestamp,\n"
-                    + "PRIMARY KEY (picid,commentid)\n"
-                    + ") WITH CLUSTERING ORDER BY (commentidno desc);";
+                    + "PRIMARY KEY (picid,commenttime)\n"
+                    + ") WITH CLUSTERING ORDER BY (commenttime desc);";
             // String CreateProfilePicture = "CREATE TABLE if not exists instagrim.profilepicture (\n"
             //+ "picid uuid \n"
             //+"image blob,"
@@ -128,10 +127,17 @@ public final class Keyspaces {
             } catch (Exception et) {
                 System.out.println("Can't create ProfilePic " + et);
             }
+            System.out.println("" + CreateCommentTable);
+            try {
+                SimpleStatement cqlQuery = new SimpleStatement(CreateCommentTable);
+                session.execute(cqlQuery);
+            } catch (Exception et) {
+                System.out.println("Can't create CommentTable " + et);
+            }
             session.close();
 
         } catch (Exception et) {
-            System.out.println("Other keyspace or coulm definition error" + et);
+            System.out.println("Other keyspace or column definition error" + et);
         }
 
     }

@@ -5,13 +5,16 @@
  */
 package uk.ac.dundee.computing.aec.instagrim.servlets;
 
+import com.datastax.driver.core.Cluster;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import uk.ac.dundee.computing.aec.instagrim.models.*;
 
 /**
  *
@@ -19,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Comment", urlPatterns = {"/Comment"})
 public class Comment extends HttpServlet {
+    Cluster cluster=null;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -58,7 +62,7 @@ public class Comment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       
     }
 
     /**
@@ -72,7 +76,22 @@ public class Comment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        // Retrieves information (user, picid and comment) 
+        // to then insert comment into datbase(insertComment within User)
+        
+        
+        User us = new User();
+        us.setCluster(cluster);
+                
+                String user = request.getParameter("user");
+		String picid = request.getParameter("picid");
+		String comment = request.getParameter("comment");
+                
+                // Convert picid to UUID (as it is currently a string..)
+                us.insertComment(UUID.fromString(picid), user, comment);
+        
+                    response.sendRedirect("/Instagrim/Images/"+user);
+        
     }
 
     /**

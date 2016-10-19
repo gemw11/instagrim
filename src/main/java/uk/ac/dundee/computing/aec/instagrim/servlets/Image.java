@@ -24,9 +24,9 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 import uk.ac.dundee.computing.aec.instagrim.lib.Convertors;
-import uk.ac.dundee.computing.aec.instagrim.models.PicModel;
+import uk.ac.dundee.computing.aec.instagrim.models.*;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
-import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
+import uk.ac.dundee.computing.aec.instagrim.stores.*;
 
 /**
  * Servlet implementation class Image
@@ -97,11 +97,17 @@ public class Image extends HttpServlet {
 
     private void DisplayImageList(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
+        User us = new User();
+        
         tm.setCluster(cluster);
         java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
+        // CHECK THIS!
+        us.setCluster(cluster);
+        java.util.LinkedList<CommentTemplate> lsComments = us.getAllComments();
         RequestDispatcher rd = request.getRequestDispatcher("/UsersPics.jsp");
         request.setAttribute("Pics", lsPics);
         request.setAttribute("Username", User);
+        request.setAttribute("Comments", lsComments);
         rd.forward(request, response);
 
     }

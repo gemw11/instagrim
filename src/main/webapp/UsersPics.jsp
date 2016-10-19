@@ -89,10 +89,14 @@
             }
         %>
         
-         <%-- <form method="POST"  action="Comment"> --%>
-
-<!--                        <input type="text" name="comment">
-                        <input type ="submit" value="Comment">-->
+           <form method="POST"  action="Comment">
+               <%-- Got help from Lab Tutors with retrieving username and picid but also hiding it --%>
+               <%-- THESE SHOULD NOT BE VISIBLE --%>
+           <input type="username" name="username" value="<%=lg.getUsername()%>" hidden>
+           <input type="picid" name="picid" value="getpicid" hidden>
+           <%-- VISIBLE --%>
+           <input type="text" name="comment">
+           <input type="submit" value="Comment">
          
          </form>
         </article>

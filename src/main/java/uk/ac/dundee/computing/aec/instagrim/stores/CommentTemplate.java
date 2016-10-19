@@ -22,12 +22,12 @@ public class CommentTemplate {
     Date commenttime = null;
     
 
-
     public void CommentTemplate(){
 
     }
     
-    public void setComment()
+    // COMMENT
+    public void setComment(String comment)
     {   
         this.comment = "";
     }
@@ -36,7 +36,8 @@ public class CommentTemplate {
         
     }
     
-    public void setUser()
+    // USER
+    public void setUser(String user)
     {
         this.user = user;
     }
@@ -44,26 +45,16 @@ public class CommentTemplate {
     {
         
     }
+
     
-    public void setcommentID()
-    {
-        this.commentid = commentid;
-    }
-    public void getcommentID()
-    {
-        
-    }
-    
-    public void setpicid()
+    // PICID
+    public void setpicid(UUID picid)
     {
         this.picid = picid;
     }
-    public void getCommentID()
-    {
-        
-    }
-    
-    public void setcommenttime()
+
+// COMMENT TIME    
+    public void setcommenttime(Date commenttime)
     {
         this.commenttime = commenttime;
     }

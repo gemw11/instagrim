@@ -81,7 +81,8 @@ public class Profile extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */
+     */// Reused Andy's code here
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -137,6 +138,7 @@ public class Profile extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    // Reused Andy's code here
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -145,7 +147,6 @@ public class Profile extends HttpServlet {
         HttpSession session = request.getSession();
         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
         String username = lg.getUsername();
-        System.out.println("DoPost after setup");
         
         if(args[1].equals("Profile"))
         {
@@ -157,7 +158,7 @@ public class Profile extends HttpServlet {
                 updateProfilePic(request, response, username);
                 response.sendRedirect("/Instagrim/Profile");
             } catch (Exception ex) {
-                System.out.println("### Error ###\n" + ex.getMessage());
+               // System.out.println("### Error ###\n" + ex.getMessage());
             }
             
         }
@@ -195,6 +196,7 @@ public class Profile extends HttpServlet {
         us.setCluster(cluster);
         us.updateProfile(username, firstname, lastname, email); 
     }
+    // Reused Andy's code here from Image/Pic 
     protected void updateProfilePic(HttpServletRequest request, HttpServletResponse response, String name) throws ServletException, IOException, Exception 
     {   
         for (Part part : request.getParts()) 
@@ -232,7 +234,7 @@ public class Profile extends HttpServlet {
         
         System.out.println("Skipped loop...");
     }
-    
+    // Reused Andy's code here from Image and Pic etc
     public void displayPP(Pic profilepic, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Pic p = profilepic;
         try (OutputStream out = response.getOutputStream()) {

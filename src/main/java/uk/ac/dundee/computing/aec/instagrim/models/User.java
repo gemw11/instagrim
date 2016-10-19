@@ -29,6 +29,8 @@ import static org.imgscalr.Scalr.resize;
 import uk.ac.dundee.computing.aec.instagrim.lib.AeSimpleSHA1;
 import uk.ac.dundee.computing.aec.instagrim.lib.Convertors;
 import uk.ac.dundee.computing.aec.instagrim.stores.*;
+import java.util.*;
+import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 
 
 /**
@@ -310,9 +312,61 @@ public class User {
             throw new IOException();
         }
     }
-     
-   
-    }
-       
+      public void insertComment(UUID picid, String user, String comment) 
+      {
+          // Date (gets timestamp)
+          Date commenttime = new Date();
+          
+          cluster = CassandraHosts.getCluster();
+          Session session = cluster.connect("instagrim");
+          PreparedStatement psComment = session.prepare("INSERT into CommentTable (picid,user,comment,commenttime) Values(?,?,?,?)");
+          BoundStatement bsComment = new BoundStatement(psComment);
+          // binding statement
+          session.execute(bsComment.bind(picid, user, comment, commenttime));
+          session.close();
+          System.out.println("Comment posted successfully!");
+      }
+
+      public java.util.LinkedList<CommentTemplate> getAllComments()
+              // Same as getPics method for user within PICMODEL (adapted slightly)
+      {
+          java.util.LinkedList<CommentTemplate> listOfComments = new java.util.LinkedList<>();
+          Session session = cluster.connect("instagrim");
+          
+          try 
+          {
+               PreparedStatement ps = session.prepare("select * from CommentTable"); // where user?  
+               ResultSet rs = null;
+               BoundStatement boundStatement = new BoundStatement(ps);
+               rs = session.execute(boundStatement); // this is where the query is executed
+                       
+        if (rs.isExhausted()) 
+        {
+            System.out.println("No Comments Returned");
+            return null;
+        } else 
+        {
+            for (Row row : rs) 
+            {
+                CommentTemplate commentTemp = new CommentTemplate();
+                // set all 
+                commentTemp.setpicid(row.getUUID("picid"));
+                commentTemp.setComment(row.getString("comment"));
+                commentTemp.setUser(row.getString("user"));
+                commentTemp.setcommenttime(row.getDate("commenttime"));
+                listOfComments.add(commentTemp); // why is it not recognising this??
+        
+            }
+            
+        }
+
+    }       catch(Exception exception)
+            {
+               System.out.println("");
+            }
+          // Return Linked Lsit
+          return listOfComments;
+      }
+}
        
 
