@@ -29,11 +29,11 @@ public class CommentTemplate {
     // COMMENT
     public void setComment(String comment)
     {   
-        this.comment = "";
+        this.comment = comment;
     }
-    public void getComment()
+    public String getComment()
     {
-        
+        return comment;
     }
     
     // USER
@@ -41,9 +41,9 @@ public class CommentTemplate {
     {
         this.user = user;
     }
-    public void getUser()
+    public String getUser()
     {
-        
+        return user;
     }
 
     
@@ -52,15 +52,20 @@ public class CommentTemplate {
     {
         this.picid = picid;
     }
+    
+    public UUID getpicid()  //uuid here not stirng
+    {
+        return picid;
+    }
 
 // COMMENT TIME    
     public void setcommenttime(Date commenttime)
     {
         this.commenttime = commenttime;
     }
-    public void getcommenttime()
+    public Date getcommenttime()
     {
-        
+        return commenttime;
     }
 
 

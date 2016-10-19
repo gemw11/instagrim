@@ -104,6 +104,7 @@ public class Image extends HttpServlet {
         // CHECK THIS!
         us.setCluster(cluster);
         java.util.LinkedList<CommentTemplate> lsComments = us.getAllComments();
+        
         RequestDispatcher rd = request.getRequestDispatcher("/UsersPics.jsp");
         request.setAttribute("Pics", lsPics);
         request.setAttribute("Username", User);
@@ -169,8 +170,7 @@ public class Image extends HttpServlet {
 
         PrintWriter out = null;
         out = new PrintWriter(response.getOutputStream());
-        out.println("<h1>You have a na error in your input</h1>");
-        out.println("<h2>" + mess + "</h2>");
+        out.println("No input.");
         out.close();
         return;
     }

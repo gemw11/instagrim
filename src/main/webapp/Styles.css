@@ -205,19 +205,6 @@ li a {
     font-size:  20px;
 }
 
-#userpictures {
-    
-    padding: 10px;
-    border-radius: 20px;
-    
-    max-height: 300px;
-    max-width: 300px;
-    width: auto;
-    height: auto;
-    float: left;
-    
-}
-
 #uploadfile {
     font-family: sans-serif;
     color: black;
@@ -241,5 +228,10 @@ li a {
     
     background-color: darkorchid;
     color: white;
+}
+
+#comments {
+    font-family: sans-serif;
+    color: red;
 }
 

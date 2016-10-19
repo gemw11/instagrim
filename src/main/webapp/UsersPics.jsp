@@ -1,8 +1,4 @@
-<%-- 
-    Document   : UsersPics
-    Created on : Sep 24, 2014, 2:52:48 PM
-    Author     : Administrator
---%>
+
 <%-- style sheet and menu bar --%>
 
 <%@page import="java.util.*"%>
@@ -81,29 +77,52 @@
                 Pic p = (Pic) iterator.next();
 
         %>
-        <%-- <a href="/Instagrim/pictureServlet/?picID=<%=userPictureID%>" >
-            <img id="userPicture" src="/Instagrim/Image/<%=p.getSUUID()%>" alt="User Picture"></a> --%>
-        <a href="/Instagrim/Image/<%=p.getSUUID()%>"img id="userpictures" ><img id="userpictures" img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
-
-            }
-            }
-        %>
-        
-           <form method="POST"  action="Comment">
-               <%-- Got help from Lab Tutors with retrieving username and picid but also hiding it --%>
-               <%-- THESE SHOULD NOT BE VISIBLE --%>
-           <input type="username" name="username" value="<%=lg.getUsername()%>" hidden>
-           <input type="picid" name="picid" value="getpicid" hidden>
-           <%-- VISIBLE --%>
-           <input type="text" name="comment">
+        <a href="/Instagrim/Image/<%=p.getSUUID()%>"img id="userpictures" ><img id="userpictures" img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/>
+        <form method="POST" action="/Instagrim/Comment">        
+           <input type="text" name="username" value="<%=lg.getUsername()%>" hidden>
+           <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden>
+           
+           <input type="text" name="comment" value="Comment">
            <input type="submit" value="Comment">
-         
          </form>
-        </article>
+        <%
+//        COMMENTS ARE SAME AS PICS
+        
+                    if (lsComments == null) 
+                    { 
+                        
+                    }
+                    else 
+                    {
+                       Iterator<CommentTemplate> it;
+                        it = lsComments.iterator();
+                    while (it.hasNext()) {
+                        CommentTemplate commentTemplate = (CommentTemplate) it.next();
+                        
+                        if(commentTemplate.getpicid().toString().equals(p.getSUUID()))
+                {
+                    %>   
+        <%-- display comment info --%>
+        <p> Username: <%=commentTemplate.getUser()%> </p>
+        <p> Commented: <%=commentTemplate.getComment()%></p>
+        <p> At:  <%=commentTemplate.getcommenttime()%><</p>
+
+        
+        
+           
+           
+        <%
+                }
+                                        }
+                    }
+                                    }
+            }
+
+
+        %>
+        </article> 
         <footer>
-            <ul>
-               <%-- <li class="footer"><a href="/Instagrim">Home</a></li>
-            --%></ul>
+
         </footer>
     </body>
 </html>

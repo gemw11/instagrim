@@ -319,7 +319,7 @@ public class User {
           
           cluster = CassandraHosts.getCluster();
           Session session = cluster.connect("instagrim");
-          PreparedStatement psComment = session.prepare("INSERT into CommentTable (picid,user,comment,commenttime) Values(?,?,?,?)");
+          PreparedStatement psComment = session.prepare("INSERT into commenttable (picid,user,comment,commenttime) Values(?,?,?,?)");
           BoundStatement bsComment = new BoundStatement(psComment);
           // binding statement
           session.execute(bsComment.bind(picid, user, comment, commenttime));
@@ -335,7 +335,7 @@ public class User {
           
           try 
           {
-               PreparedStatement ps = session.prepare("select * from CommentTable"); // where user?  
+               PreparedStatement ps = session.prepare("select * from commenttable"); // where user?  
                ResultSet rs = null;
                BoundStatement boundStatement = new BoundStatement(ps);
                rs = session.execute(boundStatement); // this is where the query is executed
