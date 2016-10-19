@@ -117,7 +117,7 @@ public class Profile extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("/profile.jsp");
                 rd.forward(request, response);
                 } catch (Exception ex) {
-                    Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
+                   // Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
                 }
             
             }

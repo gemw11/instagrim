@@ -18,6 +18,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <body>
+        
+<!--        <script>
+            function validateForm()
+            {
+                var searchValue = document.getElementById("search").value;
+                validateForm_userFeedback.innerHTML = ""
+                
+                
+                if(search == "")
+                {
+                    validateForm_userFeedback.innerHTML = "Error! You must search for a user!"
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+                
+                
+            }
+            </script>-->
        <%-- helloworld --%>
         <h1 align="center"> Instagrim! </h1>
         <i><h2 align="center"> See the world differently</h2> </i>
@@ -59,8 +80,8 @@
                   
                     <h3> Search For A User: </h3>
                     <p id="explore"> Explore! Find friends, family and more! </p>
-                    <form method="POST" action="Search">  
-                    Search: <input type="text" name="searchForUser"> 
+                    <form method="POST" action="Search" onsubmit="return validateForm();">  
+                    Search: <input type="text" id="search" name="searchForUser"> 
                     <input type="submit" value="Find Them!" id="searchbutton">
                     </form> 
     </body>

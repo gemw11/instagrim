@@ -235,3 +235,23 @@ li a {
     color: red;
 }
 
+#commentsubmit {
+    
+    background-color: white;
+    font-family: sans-serif;
+    position: relative;
+    width: 5%;
+    padding: 5px;
+    font-size: 10px;
+    border: 2px solid blueviolet;
+    border-radius: 20px;
+    color: black; 
+    
+}
+
+#commentsubmit:hover {
+    background-color: blueviolet;
+    color: white;
+    
+    
+}

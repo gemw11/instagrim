@@ -82,8 +82,8 @@
            <input type="text" name="username" value="<%=lg.getUsername()%>" hidden>
            <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden>
            
-           <input type="text" name="comment" value="Comment">
-           <input type="submit" value="Comment">
+           <input type="text" name="comment" value="">
+           <input type="submit" value="Comment" id="commentsubmit">
          </form>
         <%
 //        COMMENTS ARE SAME AS PICS
@@ -104,8 +104,9 @@
                     %>   
         <%-- display comment info --%>
         <p> Username: <%=commentTemplate.getUser()%> </p>
-        <p> Commented: <%=commentTemplate.getComment()%></p>
-        <p> At:  <%=commentTemplate.getcommenttime()%><</p>
+        <p> Said: <%=commentTemplate.getComment()%></p>
+        <p> On: <%=commentTemplate.getcommenttime()%></p>
+        <p> ___________________________________</p>
 
         
         

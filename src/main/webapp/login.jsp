@@ -40,7 +40,6 @@
                     validateForm_userFeedback.innerHTML = "Error! Password field must not be empty."
                     return false;
                 }
-                
                 else
                 {
                     return true;

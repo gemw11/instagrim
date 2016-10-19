@@ -14,6 +14,21 @@
          <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
+        <script>
+            function validateForm(){
+                // does nothingrn
+                var usernameValue = document.getElementById("username").value;
+                var passwordValue = document.getElementById("password").value;
+                var firstnameValue = document.getElementByID("firstname").value;
+                var lastnameValue = document.getElementByID("lastname").value;
+                var emailValue = document.getElementByID("email").value
+                
+                validateForm_userFeedback.innerHTML = ""
+                
+                
+                
+            }
+            </script>
         <header>
         <h1 align="center"> Instagrim! </h1>
         <i><h2 align="center"> See the world differently</h2> </i>
@@ -59,14 +74,14 @@
        
         <article>
             <h3 id="registerheader">Register as a new user..</h3>
-            <form method="POST"  action="Register">
+            <form method="POST"  action="Register" onsubmit="return validateForm();">
                 <ul>
                     <%-- mandatory fields? --%>
-                    <ul>First Name:-<input type="text" name="firstname"></ul>
-                    <ul>Last Name:-<input type="text" name="lastname"></ul>
-                    <ul>Username:-<input type="text" name="username"></ul>
-                    <ul>Password:-<input type="password" name="password"></ul>
-                    <ul>Email Address:-<input type="email" name="email"></ul>
+                    <ul>First Name:-<input type="text" id="firstnameValue" name="firstname"></ul>
+                    <ul>Last Name:-<input type="text" id="lastnameValue" name="lastname"></ul>
+                    <ul>Username:-<input type="text" id="usernameValue" name="username"></ul>
+                    <ul>Password:-<input type="password" id="passwordValue" name="password"></ul>
+                    <ul>Email Address:-<input type="email" id="emailValue" name="email"></ul>
                 </ul>
                 <br/>
                 <input type="submit" value="Register" id="loginbutton"> 

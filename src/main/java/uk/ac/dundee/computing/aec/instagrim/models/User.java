@@ -52,6 +52,7 @@ public class User {
             System.out.println("Can't check your password");
             return false;
         }
+        
         Session session = cluster.connect("instagrim");
         PreparedStatement ps = session.prepare("insert into userprofiles (login,password,first_name,last_name,email) Values(?,?,?,?,?)");
        
