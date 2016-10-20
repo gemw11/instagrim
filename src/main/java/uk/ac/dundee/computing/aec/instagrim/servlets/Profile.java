@@ -39,7 +39,11 @@ import uk.ac.dundee.computing.aec.instagrim.models.*;
     "/Profile/*",
     "/DeleteProfile",
     "/ProfilePic",
-     "/UpdateProfile"
+    "/UpdateProfile",
+    
+    "/DeleteProfile/*",
+    "/ProfilePic/*",
+    "/UpdateProfile/*"
     
 })
 @MultipartConfig
@@ -88,11 +92,11 @@ public class Profile extends HttpServlet {
             throws ServletException, IOException {
       
                 User us = new User();
-        us.setCluster(cluster);
-        String args[] = Convertors.SplitRequestPath(request);
-        HttpSession session = request.getSession();
-        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-        ProfileTemplate profile = new ProfileTemplate();
+                us.setCluster(cluster);
+                String args[] = Convertors.SplitRequestPath(request);
+             HttpSession session = request.getSession();
+             LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+             ProfileTemplate profile = new ProfileTemplate();
 // Is user logged in?
 // NULL IN CONSOLE IN DO GET (POSSIBLY BECAUSE PROFILEPIC DOESNT EXIST????
         if ( (lg != null) && (lg.getlogedin() == true) ) 
@@ -147,27 +151,33 @@ public class Profile extends HttpServlet {
         HttpSession session = request.getSession();
         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
         String username = lg.getUsername();
+        System.out.println("START OF DO POST");
         
-        if(args[1].equals("Profile"))
+        if(args[2].equals("Profile/"+lg.getUsername()))
         {
             
         }
-        else if(args[1].equals("ProfilePic"))
+        else if(args[2].equals("ProfilePic"))
         {
+            System.out.println("dp[post profile pic before try");
             try {
+                System.out.println("START OF DO POST TRY STATEMENT  IN PROFILE PIC PROFILE SERVLET");
                 updateProfilePic(request, response, username);
-                response.sendRedirect("/Instagrim/Profile");
-            } catch (Exception ex) {
-               // System.out.println("### Error ###\n" + ex.getMessage());
+                response.sendRedirect("/Instagrim/Profile/"+lg.getUsername()); //addedgetusername
+            } catch (Exception ex) 
+            {
+                System.out.println("CATCH STATEMENT");
+                System.out.println("### Error ###\n" + ex.getMessage());
             }
             
         }
-        else if(args[1].equals("UpdateProfile"))
+        else if(args[2].equals("UpdateProfile"))
         {
-           updateProf(request, response, username);
-           response.sendRedirect("/Instagrim/Profile"); 
+            System.out.println("START OF UPDATEPROFILE ARGS ");
+            updateProf(request, response, username);
+            response.sendRedirect("/Instagrim/Profile/"+lg.getUsername()); //added getusername
         }
-        else if(args[1].equals("DeleteProfile"))
+        else if(args[2].equals("DeleteProfile"))
         {
            User us =new User();
            us.setCluster(cluster);
@@ -199,9 +209,10 @@ public class Profile extends HttpServlet {
     // Reused Andy's code here from Image/Pic 
     protected void updateProfilePic(HttpServletRequest request, HttpServletResponse response, String name) throws ServletException, IOException, Exception 
     {   
+        System.out.println("updateprofpic method");
         for (Part part : request.getParts()) 
         {
-            
+            System.out.println("updateprofpic method forloop");
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
             InputStream is = request.getPart(part.getName()).getInputStream();

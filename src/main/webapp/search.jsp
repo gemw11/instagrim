@@ -80,7 +80,7 @@
                   
                     <h3> Search For A User: </h3>
                     <p id="explore"> Explore! Find friends, family and more! </p>
-                    <form method="POST" action="Search" onsubmit="return validateForm();">  
+                    <form method="POST" action="Search">  
                     Search: <input type="text" id="search" name="searchForUser"> 
                     <input type="submit" value="Find Them!" id="searchbutton">
                     </form> 

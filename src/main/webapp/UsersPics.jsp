@@ -94,6 +94,7 @@
                     }
                     else 
                     {
+                        // exactly the same as pics ^^^
                        Iterator<CommentTemplate> it;
                         it = lsComments.iterator();
                     while (it.hasNext()) {

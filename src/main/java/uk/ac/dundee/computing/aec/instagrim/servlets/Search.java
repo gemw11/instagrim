@@ -57,9 +57,9 @@ public class Search extends HttpServlet {
         
         String searchForUser=request.getParameter("searchForUser");
         if(searchForUser.equals(""))
-        {
+        { // validation does not work with java script form (check)
             // VALIDATE HERE, IF BUTTOM IS PRESSED WITH NO INPUT 
-            // THEN DO SAME AS LOGIN FORM 
+//             THEN DO SAME AS LOGIN FORM 
             response.sendRedirect("/Instagrim");
         }
         else

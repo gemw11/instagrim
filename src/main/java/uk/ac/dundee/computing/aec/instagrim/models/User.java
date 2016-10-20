@@ -273,7 +273,9 @@ public class User {
             session.close();
             Pic p = new Pic();
             p.setPic(bImage, length, type);
+            System.out.println("returns p");
             return p;
+            
             
         } catch (Exception et) {
             System.out.println("Error retrieving profile picture" + et);

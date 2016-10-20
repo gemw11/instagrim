@@ -60,11 +60,12 @@
                             <h1> <%=profile.getFirstName()%> <%=profile.getLastName()%>'s Profile </h1>
                             <%-- <ul>First Name:-<input type="text" name="firstname"></ul> --%>
                             <%--<h2 align="center"> Profile Picture: </h2> --%>
+                            <img id="profilepicture" class="thumbnail" alt="User profile picture" src="${pageContext.request.contextPath}/ProfilePic">
                             
                             <form method="POST" enctype="multipart/form-data" action="ProfilePic">
                             
-                            <img id="profilePicture" class="thumbnail" alt="User profile picture" src="${pageContext.request.contextPath}/ProfilePic">
-                            File to upload: <input type="file" class="" name="profilepic">
+                               <%-- <img id="profilePicture" class="thumbnail" alt="User profile picture"> --%>
+                            File to upload: <input type="file" class="" name="profilepic"> 
                             <input type="submit" value="Update Profile Picture" id="profpic"> 
                             </form>
                 

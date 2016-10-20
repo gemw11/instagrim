@@ -6,10 +6,8 @@
 
 
 <%-- THINGS TO DO:
-COMMENTS **
-FILTERS **
-ORDERING PH0TOS BETTER?? /////////////
-JS /////////////////////
+
+FILTERS **??
 
 also check if username already exists
 
