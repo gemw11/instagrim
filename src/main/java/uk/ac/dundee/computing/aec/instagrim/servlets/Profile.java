@@ -48,8 +48,8 @@ import uk.ac.dundee.computing.aec.instagrim.models.*;
 })
 @MultipartConfig
 public class Profile extends HttpServlet {
-    private HashMap CommandsMap = new HashMap();
-    Cluster cluster=null;
+                private HashMap CommandsMap = new HashMap();
+                Cluster cluster=null;
     
    public Profile() {
         super();
@@ -94,9 +94,9 @@ public class Profile extends HttpServlet {
                 User us = new User();
                 us.setCluster(cluster);
                 String args[] = Convertors.SplitRequestPath(request);
-             HttpSession session = request.getSession();
-             LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-             ProfileTemplate profile = new ProfileTemplate();
+                    HttpSession session = request.getSession();
+                    LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        ProfileTemplate profile = new ProfileTemplate();
 // Is user logged in?
 // NULL IN CONSOLE IN DO GET (POSSIBLY BECAUSE PROFILEPIC DOESNT EXIST????
         if ( (lg != null) && (lg.getlogedin() == true) ) 
@@ -108,9 +108,12 @@ public class Profile extends HttpServlet {
                    try {
                        System.out.println("2");
                         profilepic = us.getProfilePic(profile, lg.getUsername());
+                        System.out.println("2.5");
                         displayPP(profilepic, request, response);
                     } catch (Exception ex) {
+                        
                         System.out.println("3");
+                        // catch error
                         Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     return;
@@ -146,19 +149,22 @@ public class Profile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // This method handles all information posted from other parts of code (Update, Delete, Prof Pic)
         // Do 1,2,3 here, Profile, Delete and UPDATE
+        
+        // Split URL path
         String args[] = Convertors.SplitRequestPath(request);
         HttpSession session = request.getSession();
         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
         String username = lg.getUsername();
         System.out.println("START OF DO POST");
         
-        if(args[2].equals("Profile/"+lg.getUsername()))
+        if(args[2].equals("Profile"))
         {
-            
+            // Do nothing at moment
         }
         else if(args[2].equals("ProfilePic"))
-        {
+        { // This updates the logged in user's profile picture
             System.out.println("dp[post profile pic before try");
             try {
                 System.out.println("START OF DO POST TRY STATEMENT  IN PROFILE PIC PROFILE SERVLET");
@@ -173,15 +179,19 @@ public class Profile extends HttpServlet {
         }
         else if(args[2].equals("UpdateProfile"))
         {
+            // Updates logged users profile details
+            // ENSURE USERNAME CANNOT BE CHANGED!! (causes issues)
             System.out.println("START OF UPDATEPROFILE ARGS ");
             updateProf(request, response, username);
             response.sendRedirect("/Instagrim/Profile/"+lg.getUsername()); //added getusername
         }
         else if(args[2].equals("DeleteProfile"))
         {
+            System.out.println("DELETE PROF METHOD (BEFORE NEW USER)");
            User us =new User();
            us.setCluster(cluster);
            us.deleteUser(username);
+           // Once deleted, logout (redirect)
            response.sendRedirect("/Instagrim/Logout"); 
         }
     }
@@ -198,28 +208,35 @@ public class Profile extends HttpServlet {
     
     protected void updateProf(HttpServletRequest request, HttpServletResponse response, String name) throws ServletException, IOException 
     {   
+        // Request all parameters and create new object of user 
         String username = name;
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String email = request.getParameter("email");
         User us=new User();
         us.setCluster(cluster);
+        // Set cluster  and then use parameters to update the users profile 
+        // Calls update method
         us.updateProfile(username, firstname, lastname, email); 
     }
     // Reused Andy's code here from Image/Pic 
     protected void updateProfilePic(HttpServletRequest request, HttpServletResponse response, String name) throws ServletException, IOException, Exception 
     {   
         System.out.println("updateprofpic method");
+        // Multipart error here --> FIX
         for (Part part : request.getParts()) 
         {
             System.out.println("updateprofpic method forloop");
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
-            InputStream is = request.getPart(part.getName()).getInputStream();
-            int i = is.available();
+            System.out.println("before inputstream");
+            InputStream inputstream = request.getPart(part.getName()).getInputStream();
+            int i = inputstream.available();
             HttpSession session=request.getSession();
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
+            // Create a new profile object to assign profile picture to
             ProfileTemplate template = new ProfileTemplate();
+            // Obtain username 
             String username = "";
             if (lg.getlogedin())
             {
@@ -227,14 +244,20 @@ public class Profile extends HttpServlet {
             }
             if (i > 0) 
             {
+                // From Image Servlet too
+                
                 byte[] b = new byte[i + 1];
-                is.read(b);
+                inputstream.read(b);
+                
+                // Create new user and set cluster to then update profile picture
                 User us = new User();
                 us.setCluster(cluster);
                 us.updateProfilePic(b, type, filename, username);
                 Pic pic = us.getProfilePic(template, username);
                 template.setProfilePicture(pic);
-                is.close();
+                inputstream.close();
+                
+              
             }
             
             System.out.println("UPDATE profilepic method end");
@@ -245,22 +268,32 @@ public class Profile extends HttpServlet {
         
         System.out.println("Skipped loop...");
     }
+    
+    // Method to display the profile picture
     // Reused Andy's code here from Image and Pic etc
     public void displayPP(Pic profilepic, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Pic p = profilepic;
-        try (OutputStream out = response.getOutputStream()) {
+        // Copied method from AECobley's DisplayImage (and adapted) method in IMAGE Servlet
+        try (OutputStream outputstream = response.getOutputStream()) {
+            
             response.setContentType(p.getType());
             response.setContentLength(p.getLength());
-            InputStream is = new ByteArrayInputStream(p.getBytes());
-            BufferedInputStream input = new BufferedInputStream(is);
+            
+            InputStream inputStream = new ByteArrayInputStream(p.getBytes());
+            BufferedInputStream inputread = new BufferedInputStream(inputStream);
+            
             byte[] buffer = new byte[p.getLength()];
-            for (int length; (length = input.read(buffer)) > 0;) {
-                out.write(buffer, 0, length);
-                out.close();
+            for (int length; (length = inputread.read(buffer)) > 0;) 
+            {
+                outputstream.write(buffer, 0, length);
+                outputstream.close();
             }
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (Exception e) 
+        {
+            System.out.println("ERROR!" +e);
         }
     }
+    
+    
 
 }

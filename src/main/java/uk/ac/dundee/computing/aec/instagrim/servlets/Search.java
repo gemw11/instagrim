@@ -60,7 +60,9 @@ public class Search extends HttpServlet {
         { // validation does not work with java script form (check)
             // VALIDATE HERE, IF BUTTOM IS PRESSED WITH NO INPUT 
 //             THEN DO SAME AS LOGIN FORM 
-            response.sendRedirect("/Instagrim");
+            
+            response.sendRedirect("/Instagrim/Search");
+            // Fix so that error message pops up OR script??
         }
         else
         { 

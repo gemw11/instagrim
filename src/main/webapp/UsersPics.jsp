@@ -108,11 +108,6 @@
         <p> Said: <%=commentTemplate.getComment()%></p>
         <p> On: <%=commentTemplate.getcommenttime()%></p>
         <p> ___________________________________</p>
-
-        
-        
-           
-           
         <%
                 }
                                         }
@@ -124,7 +119,6 @@
         %>
         </article> 
         <footer>
-
         </footer>
     </body>
 </html>

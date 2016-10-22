@@ -208,41 +208,31 @@ public class User {
         }
         
      }
-       
+       // Same as pic resize in PICMODEL
        public byte[] profilePicresize(String picid, String type, byte[] b, String filter) throws IOException {
         try {
-            InputStream bais = new ByteArrayInputStream(b);
-            BufferedImage BI = ImageIO.read(bais);
+            // NEW BA INPUTSTREAM AND BA OUTPUTSTREAM
+            InputStream inputstream = new ByteArrayInputStream(b);
+            BufferedImage BI = ImageIO.read(inputstream);
             BufferedImage thumbnail = createProfileThumbnail(BI, filter);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(thumbnail, type, baos);
-            baos.flush();
-            byte[] imageInByte = baos.toByteArray();
-            baos.close();
+            ByteArrayOutputStream outputstream = new ByteArrayOutputStream();
+            ImageIO.write(thumbnail, type, outputstream);
+            outputstream.flush();
+            byte[] imageInByte = outputstream.toByteArray();
+            outputstream.close();
             return imageInByte;
         } catch (IOException et) {
             throw new IOException();
         }
     }
        
+       // Create Thumbnail, same as PicModel Thumbnail Method
        public static BufferedImage createProfileThumbnail(BufferedImage img, String filter) {
-        
-        switch (filter)
-        {
-            case "normal":
-            {
+
                 img = resize(img, Scalr.Method.SPEED, 250);
-                // Let's add a little border before we return result.
                 return pad(img, 2);
-            }
-            default:
-            {
-                img = resize(img, Scalr.Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE);
-                // Let's add a little border before we return result.
-                return pad(img, 2);
-            }
         }
-    }
+
        
        public Pic getProfilePic(ProfileTemplate profile, String username) throws Exception
     {        
@@ -252,18 +242,22 @@ public class User {
             ByteBuffer bImage = null;
             String type = null;
             int length = 0;
-            Convertors convertor = new Convertors();
+            //Convertors convertor = new Convertors();
             ResultSet rs = null;
             PreparedStatement ps = null;
             ps = session.prepare("select * from profilepictures where user =?");
             BoundStatement boundStatement = new BoundStatement(ps);
             rs = session.execute(boundStatement.bind(username));
             
-            if (rs.isExhausted()) {
+            if (rs.isExhausted()) 
+            {
                 System.out.println("No Images returned" +username);
                 return null;
-            } else {
-                for (Row row : rs) {
+            } 
+            else 
+            {
+                for (Row row : rs) 
+                {
                     bImage = row.getBytes("thumb");
                     length = row.getInt("thumblength");
                     type = row.getString("type");
@@ -273,12 +267,14 @@ public class User {
             session.close();
             Pic p = new Pic();
             p.setPic(bImage, length, type);
-            System.out.println("returns p");
+            System.out.println("returns p here");
             return p;
             
             
-        } catch (Exception et) {
-            System.out.println("Error retrieving profile picture" + et);
+        } 
+        catch (Exception excep) 
+        {
+            System.out.println("ERROR! Could not retrieve Profile Picture" + excep);
             return null;
         }
     }
@@ -294,6 +290,7 @@ public class User {
       public void setProfilePicture(byte[] b, String type, String name, String user) throws IOException {
         try 
         {
+// Very similar to insert pic here (adapted)
             System.out.println("setprofilepic method");
             String types[] = Convertors.SplitFiletype(type);
             int length = b.length;
@@ -307,6 +304,7 @@ public class User {
             BoundStatement bsInsertProfilePicture = new BoundStatement(psInsertProfilePicture);
             session.execute(bsInsertProfilePicture.bind(picid, buffer, thumbbuf, user, length, thumblength, type, name));
             session.close();
+            // -----------------------------------------------------
             System.out.println("setprofilepic method end");
         } 
         catch (Exception e) 
@@ -315,6 +313,7 @@ public class User {
             throw new IOException();
         }
     }
+      // Insert Comment into database (picid, user, comment and DATE/TIMESTAMP
       public void insertComment(UUID picid, String user, String comment) 
       {
           // Date (gets timestamp)
@@ -334,20 +333,20 @@ public class User {
               // Same as getPics method for user within PICMODEL (adapted slightly)
       {
           java.util.LinkedList<CommentTemplate> listOfComments = new java.util.LinkedList<>();
-          Session session = cluster.connect("instagrim");
-          
+          Session session = cluster.connect("instagrim"); 
           try 
           {
                PreparedStatement ps = session.prepare("select * from commenttable"); // where user?  
                ResultSet rs = null;
                BoundStatement boundStatement = new BoundStatement(ps);
                rs = session.execute(boundStatement); // this is where the query is executed
-                       
+                  System.out.println("BEFORE EXHAUSTED");    
         if (rs.isExhausted()) 
         {
             System.out.println("No Comments Returned");
             return null;
-        } else 
+        } 
+        else 
         {
             for (Row row : rs) 
             {
@@ -365,7 +364,7 @@ public class User {
 
     }       catch(Exception exception)
             {
-               System.out.println("");
+               System.out.println("ERROR!" + exception);
             }
           // Return Linked Lsit
           return listOfComments;

@@ -32,7 +32,9 @@ import uk.ac.dundee.computing.aec.instagrim.models.User;
  */
 @WebServlet(name = "Register", urlPatterns = {"/Register"})
 public class Register extends HttpServlet {
-    Cluster cluster=null;
+                Cluster cluster=null;
+    
+    
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
@@ -53,6 +55,9 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        // Gets parameters from Register
+        // Asssigns them to a new profile, redirects back to home
+        // Should possibly Register->Be logged in?
         
         String username=request.getParameter("username");
         String password=request.getParameter("password");
@@ -66,6 +71,8 @@ public class Register extends HttpServlet {
        
        us.RegisterUser(username, password, firstname, lastname, email);
         
+       // Once registered, maybe change so that user is logged in?
+       // Bad practice?
 	response.sendRedirect("/Instagrim");
         
     }
@@ -83,7 +90,6 @@ public class Register extends HttpServlet {
         
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             
-            // Redirect .jsp to servlet (within jsp page)
             RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
             rd.forward(request, response);
             
