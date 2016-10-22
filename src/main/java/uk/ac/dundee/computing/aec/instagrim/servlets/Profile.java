@@ -159,7 +159,7 @@ public class Profile extends HttpServlet {
         String username = lg.getUsername();
         System.out.println("START OF DO POST");
         
-        if(args[2].equals("Profile"))
+        if(args[2].equals("Profile/"+lg.getUsername()))
         {
             // Do nothing at moment
         }
@@ -278,7 +278,7 @@ public class Profile extends HttpServlet {
             
             response.setContentType(p.getType());
             response.setContentLength(p.getLength());
-            
+            // new is
             InputStream inputStream = new ByteArrayInputStream(p.getBytes());
             BufferedInputStream inputread = new BufferedInputStream(inputStream);
             

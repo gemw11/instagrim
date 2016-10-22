@@ -190,7 +190,7 @@ public class User {
             String types[] = Convertors.SplitFiletype(type);
             int length = b.length;
             java.util.UUID picid = Convertors.getTimeUUID();
-            byte[] thumbb = profilePicresize(picid.toString(), types[1], b, "normal");
+            byte[] thumbb = profilePicResize(picid.toString(), types[1], b, "normal");
             int thumblength = thumbb.length;
             ByteBuffer thumbbuf = ByteBuffer.wrap(thumbb);
             Session session = cluster.connect("instagrim");//Connect to Instagrim db
@@ -209,7 +209,7 @@ public class User {
         
      }
        // Same as pic resize in PICMODEL
-       public byte[] profilePicresize(String picid, String type, byte[] b, String filter) throws IOException {
+       public byte[] profilePicResize(String picid, String type, byte[] b, String filter) throws IOException {
         try {
             // NEW BA INPUTSTREAM AND BA OUTPUTSTREAM
             InputStream inputstream = new ByteArrayInputStream(b);
@@ -295,7 +295,7 @@ public class User {
             String types[] = Convertors.SplitFiletype(type);
             int length = b.length;
             java.util.UUID picid = Convertors.getTimeUUID();
-            byte[] thumbb = profilePicresize(picid.toString(), types[1], b, "normal");
+            byte[] thumbb = profilePicResize(picid.toString(), types[1], b, "normal");
             int thumblength = thumbb.length;
             ByteBuffer thumbbuf = ByteBuffer.wrap(thumbb);
             Session session = cluster.connect("instagrim");//Connect to Instagrim db

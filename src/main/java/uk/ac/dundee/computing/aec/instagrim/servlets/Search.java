@@ -20,6 +20,8 @@ import javax.servlet.RequestDispatcher;
  */
 @WebServlet(name = "Search", urlPatterns = {"/Search"})
 public class Search extends HttpServlet {
+    
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,7 +64,9 @@ public class Search extends HttpServlet {
 //             THEN DO SAME AS LOGIN FORM 
             
             response.sendRedirect("/Instagrim/Search");
+            System.out.print("AFTER REDIRECT BACK TO SEARCH PAGE ");
             // Fix so that error message pops up OR script??
+            
         }
         else
         { 
