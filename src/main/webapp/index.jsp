@@ -38,7 +38,6 @@ also check if username already exists
 
                 <li><a href="/Instagrim">Home</a></li>
                    <%-- only if logged in? --%>
-                <li><a href="/Instagrim/Search">Search</a></li>
                 <li><a href="/Instagrim/Upload">Upload</a></li>
                     <%
                         
@@ -47,6 +46,7 @@ also check if username already exists
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
+                <li><a href="/Instagrim/Search">Search</a></li>
                 <li><a href="/Instagrim/Profile/<%=lg.getUsername()%>">Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 

@@ -24,7 +24,6 @@
 
                 <li><a href="/Instagrim">Home</a></li>
                    <%-- only if logged in? --%>
-                <li><a href="/Instagrim/Search">Search</a></li>
                 <li><a href="/Instagrim/Upload">Upload</a></li>
                     <%
                         
@@ -33,6 +32,7 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
+                <li><a href="/Instagrim/Search">Search</a></li>
                 <li><a href="/Instagrim/Profile">Profile</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li><a href="/Instagrim/Logout">Logout</a></li>
